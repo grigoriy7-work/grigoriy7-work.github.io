@@ -10,7 +10,8 @@
     "test": "jest src",
     "lint": "eslint src --fix",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "deploy": "npx gh-pages -d dist -e ."
   },
   "license": "MIT",
   "devDependencies": {
@@ -46,6 +47,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-storybook": "^0.8.0",
     "fork-ts-checker-webpack-plugin": "^8.0.0",
+    "gh-pages": "^6.3.0",
     "html-webpack-plugin": "^5.5.1",
     "husky": "^8.0.0",
     "jest": "^29.5.0",
