@@ -18,7 +18,9 @@ export const round = (value: number, accuracy = 2): number => {
 const transformRegexp =
   /(matrix\(-?\d+(\.\d+)?, -?\d+(\.\d+)?, -?\d+(\.\d+)?, -?\d+(\.\d+)?, )(-?\d+(\.\d+)?), (-?\d+(\.\d+)?)\)/;
 
-export const getTransformFromCss = (transformCssString: string): { x: number; y: number } => {
+type coordinates = { x: number; y: number };
+
+export const getTransformFromCss = (transformCssString: string): coordinates => {
   const data = transformCssString.match(transformRegexp);
   if (!data) return { x: 0, y: 0 };
   return {
@@ -27,7 +29,7 @@ export const getTransformFromCss = (transformCssString: string): { x: number; y:
   };
 };
 
-export const getColorContrastValue = ([red, green, blue]: number[]): number =>
+export const getColorContrastValue = ([red, green, blue]: [number, number, number]) =>
   // http://www.w3.org/TR/AERT#color-contrast
   Math.round((red * 299 + green * 587 + blue * 114) / 1000);
 
@@ -36,11 +38,11 @@ export const getContrastType = (contrastValue: number): string => (contrastValue
 export const shortColorRegExp = /^#[0-9a-f]{3}$/i;
 export const longColorRegExp = /^#[0-9a-f]{6}$/i;
 
-export const checkColor = (color: string): void => {
+export const checkColor = (color: string): void | Error => {
   if (!longColorRegExp.test(color) && !shortColorRegExp.test(color)) throw new Error(`invalid hex color: ${color}`);
 };
 
-export const hex2rgb = (color: string): number[] => {
+export const hex2rgb = (color: string): [number, number, number] => {
   checkColor(color);
   if (shortColorRegExp.test(color)) {
     const red = parseInt(color.substring(1, 2), 16);
@@ -54,7 +56,8 @@ export const hex2rgb = (color: string): number[] => {
   return [red, green, blue];
 };
 
-export const getNumberedArray = (arr: string[]) => arr.map((value: string, number: number) => ({ value, number }));
+export const getNumberedArray = <T extends string[] | number[]>(arr: T) =>
+  arr.map((value: string | number, number: number) => ({ value, number }));
 
 export const toStringArray = (arr: { value: string; number: number }[]): string[] =>
   arr.map(({ value, number }) => `${value}_${number}`);
