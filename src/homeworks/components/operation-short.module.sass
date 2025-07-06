@@ -1,0 +1,26 @@
+.box 
+    padding: 10px
+    border: 1px solid silver
+    border-radius: 5px
+    display: flex
+    justify-content: start
+    height: 30px
+    width: 350px
+    
+    .item
+        border-left: 1px solid silver
+        padding-left: 5px
+        padding-right: 10px
+        max-width: 100px
+        display: flex
+        justify-content: center
+        align-items: center
+        
+        &:first-child
+            border-left: none
+
+        span
+            overflow: hidden
+            text-overflow: ellipsis
+            white-space: nowrap
+
