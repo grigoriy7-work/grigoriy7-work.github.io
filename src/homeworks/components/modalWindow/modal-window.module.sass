@@ -4,9 +4,7 @@
   position: absolute
   top: 0px
   background-color: SlateGray
-  display: flex
-  justify-content: center
-  align-items: center
+  display: none
 
   .modal-window
     height: 250px
@@ -14,7 +12,8 @@
     border-radius: 5px
     background-color: white
     border: 1px solid DarkGray
- 
+    display: none
+
     .header 
       height: 30px
       background-color: silver 
@@ -24,7 +23,7 @@
       border-radius: 5px 5px 0 0
       border-bottom: 1px solid DarkGray
 
-      .close-button
+      .close-box
         width: 30px
         border-radius: 0 5px 0 0
         background-color: white
@@ -32,12 +31,23 @@
         display: flex
         justify-content: center
         align-items: center
-      
+
+        .close-button
+          height: 100%
+          width: 100%
+          border: none
+          border-radius: 0 5px 0 0
+        
       .title
         width: 100%
         display: flex
         align-self: center
         justify-content: center
 
+  .modal-window--visible
+    display: block
 
-        
+.mask--visible
+  display: flex
+  justify-content: center
+  align-items: center
