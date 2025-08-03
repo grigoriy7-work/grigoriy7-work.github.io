@@ -34,6 +34,7 @@ export const Alert: React.FC = () => {
       <div>
         <Button text="открть окно" clickHandler={() => setIsVisble((prev) => !prev)} />
       </div>
+
       <ModalWindow title="окно" isVisible={isVisible} setVisible={setIsVisble}>
         <p>{text}</p>
       </ModalWindow>
