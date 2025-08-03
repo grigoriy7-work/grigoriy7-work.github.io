@@ -1,7 +1,9 @@
 import React from 'react';
 
+export type TypeColor = 'light' | 'dark';
+
 interface Theme {
-  color: string;
+  color: TypeColor;
   setTheme?: () => void;
 }
 

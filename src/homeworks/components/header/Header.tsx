@@ -11,7 +11,7 @@ export const Header: React.FC = () => {
     <div className={[s.header, s[`header--${theme.color}`]].join(' ')}>
       <Logo />
       <div className={s['control-buttons']}>
-        <ThemeSwithcer toogleThemeHandler={theme.setTheme} />
+        <ThemeSwithcer toogleThemeHandler={theme.setTheme} color={theme.color} />
       </div>
     </div>
   );
