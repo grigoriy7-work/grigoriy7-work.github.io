@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { ModalWindow } from '../modalWindow/ModalWindow';
+import { LanguageContext } from 'src/homeworks/LanguageContext';
 
 interface ButtonProps {
   text: string;
@@ -21,6 +22,7 @@ export const InputText: React.FC<InputTextProps> = ({ ...props }) => {
 export const Alert: React.FC = () => {
   const [text, setText] = React.useState('');
   const [isVisible, setIsVisble] = React.useState(false);
+  const language = useContext(LanguageContext);
 
   return (
     <>
@@ -32,10 +34,10 @@ export const Alert: React.FC = () => {
         />
       </div>
       <div>
-        <Button text="открть окно" clickHandler={() => setIsVisble((prev) => !prev)} />
+        <Button text={language.translater('open-window')} clickHandler={() => setIsVisble((prev) => !prev)} />
       </div>
 
-      <ModalWindow title="окно" isVisible={isVisible} setVisible={setIsVisble}>
+      <ModalWindow title={language.translater('window')} isVisible={isVisible} setVisible={setIsVisble}>
         <p>{text}</p>
       </ModalWindow>
     </>

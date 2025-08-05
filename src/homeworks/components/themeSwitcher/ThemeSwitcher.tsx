@@ -1,11 +1,16 @@
-import React from 'react';
-import { TypeColor } from 'src/homeworks/ThemeContext';
+import React, { useContext } from 'react';
+import { ThemeContext } from 'src/homeworks/ThemeContext';
+import { LanguageContext } from 'src/homeworks/LanguageContext';
 
-interface ThemeSwithcerProps {
-  toogleThemeHandler: () => void;
-  color: TypeColor;
-}
+export const ThemeSwithcer: React.FC = () => {
+  const theme = useContext(ThemeContext);
+  const language = useContext(LanguageContext);
+  const color = theme.color;
+  console.info('color', color);
 
-export const ThemeSwithcer: React.FC<ThemeSwithcerProps> = ({ ...props }) => {
-  return <button onClick={props.toogleThemeHandler}>тема {props.color}</button>;
+  return (
+    <button onClick={theme.setTheme}>
+      {language.translater('theme')} {language.translater(color)}
+    </button>
+  );
 };
