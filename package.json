@@ -65,7 +65,10 @@
   },
   "dependencies": {
     "clsx": "^1.2.1",
+    "i18next": "^25.3.2",
+    "i18next-http-backend": "^3.0.2",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-i18next": "^15.6.1"
   }
 }

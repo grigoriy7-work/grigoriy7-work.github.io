@@ -1,0 +1,70 @@
+.mask
+  height: 100vh
+  width: 100vw
+  position: absolute
+  top: 0px
+  background-color: SlateGray
+  display: none
+
+.modal-window
+  height: 250px
+  width: 250px
+  border-radius: 6px
+  background-color: white
+  display: none
+
+  .header 
+    height: 30px
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+    border-radius: 5px 5px 0 0
+    border-bottom: 1px solid silver
+
+    .close-box
+      width: 30px
+      border-radius: 0 5px 0 0
+      background-color: white
+      user-select: none
+      display: flex
+      justify-content: center
+      align-items: center
+
+      .close-button
+        height: 100%
+        width: 100%
+        border: none
+        border-radius: 0 5px 0 0
+      
+    .title
+      width: 100%
+      display: flex
+      align-self: center
+      justify-content: center
+
+  .header--light
+    background-color: white
+    color: black
+
+  .header--dark
+    background-color: gray
+    color: white
+
+  .content
+    display: flex
+    justify-content: center
+    align-self: center
+    height: 100%
+
+  .content--dark
+    background-color: silver
+
+.modal-window--visible
+  display: block
+
+.mask--visible
+  display: flex
+  justify-content: center
+  align-items: center
+
+
