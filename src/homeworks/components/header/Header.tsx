@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import s from './header.module.sass';
 import { Logo } from '../logo/Logo';
-import { ThemeContext } from 'src/homeworks/ThemeContext';
-import { ThemeSwithcer } from 'src/homeworks/components/themeSwitcher/ThemeSwitcher';
-import { LanguageeSwithcer } from 'src/homeworks/components/languageSwitcher/LanguageSwitcher';
+import { ThemeContext } from '../ThemeContext';
+import { ThemeSwithcer } from '../themeSwitcher/ThemeSwitcher';
+import { LanguageeSwithcer } from '../languageSwitcher/LanguageSwitcher';
 
 export const Header: React.FC = () => {
   const theme = useContext(ThemeContext);

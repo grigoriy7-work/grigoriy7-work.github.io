@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { LanguageContext } from 'src/homeworks/LanguageContext';
+import { LanguageContext } from '../LanguageContext';
 
 export const LanguageeSwithcer = () => {
   const language = useContext(LanguageContext);

@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 //import logo from './logo.svg';
 import './App.css';
 import { Alert } from '../homeworks/components/alert/Alert';
-import { ThemeContext, TypeColor } from 'src/homeworks/ThemeContext';
-import { LanguageContext, TypeLanguage } from 'src/homeworks/LanguageContext';
+import { ThemeContext, TypeColor } from 'src/homeworks/components/ThemeContext';
+import { LanguageContext, TypeLanguage } from 'src/homeworks/components/LanguageContext';
 import { Layout } from 'src/homeworks/components/layout/Layout';
 import { useTranslation } from 'react-i18next';
 

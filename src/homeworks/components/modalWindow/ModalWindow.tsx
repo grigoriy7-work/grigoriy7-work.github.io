@@ -1,10 +1,11 @@
 import React, { ReactNode, useContext } from 'react';
 import s from './modal-window.module.sass';
-import { ThemeContext } from 'src/homeworks/ThemeContext';
+import { ThemeContext } from '../ThemeContext';
 
 export interface ModalWindowProps {
   title: string;
   children?: ReactNode | ReactNode[];
+  /**Видимость */
   isVisible: boolean;
   setVisible: (isVisible: boolean) => void;
 }

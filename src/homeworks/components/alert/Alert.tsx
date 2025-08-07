@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { ModalWindow } from '../modalWindow/ModalWindow';
-import { LanguageContext } from 'src/homeworks/LanguageContext';
+import { LanguageContext } from 'src/homeworks/components/LanguageContext';
 
 interface ButtonProps {
   text: string;
