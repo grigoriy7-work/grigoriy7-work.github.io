@@ -6,6 +6,7 @@ import { ThemeContext, TypeColor } from 'src/homeworks/components/ThemeContext';
 import { LanguageContext, TypeLanguage } from 'src/homeworks/components/LanguageContext';
 import { Layout } from 'src/homeworks/components/layout/Layout';
 import { useTranslation } from 'react-i18next';
+import { List } from 'src/homeworks/components/list/List';
 
 function App() {
   const { t, i18n } = useTranslation();
@@ -25,11 +26,28 @@ function App() {
     });
   };
 
+  const operations = [
+    {
+      sum: 5000,
+      category: 'расходы',
+      name: 'покупка товаров',
+      description:
+        'продукт отличного качества, довольно высокого качества. Цена выше рынка. Приятно пользоваться, думаю прослужит долго.',
+    },
+    {
+      sum: 700,
+      category: 'расходы1',
+      name: 'покупка товаров1',
+      description: 'продукт отличного качества',
+    },
+  ];
+
   return (
     <LanguageContext.Provider value={{ language, setLanguage: toogleLanguage, translater: t }}>
       <ThemeContext.Provider value={{ color, setTheme: toogleTheme }}>
         <Layout>
           <Alert />
+          <List operations={operations} />
         </Layout>
       </ThemeContext.Provider>
     </LanguageContext.Provider>
