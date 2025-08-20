@@ -5,6 +5,7 @@ import { createRandomOperation, Operation } from './../../ts1/3_write';
 import s from './list.module.sass';
 
 export interface ListProps {
+  /**краткий список операций */
   operations: OperationShortProps[];
 }
 
