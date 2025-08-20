@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC, forwardRef } from 'react';
 import s from './operation-short.module.sass';
 
 export interface OperationShortProps {
@@ -12,9 +12,9 @@ export interface OperationShortProps {
   description: string;
 }
 
-export const OperationShort: React.FC<OperationShortProps> = ({ ...props }) => {
+export const OperationShort = forwardRef<HTMLDivElement, OperationShortProps>(({ ...props }, ref) => {
   return (
-    <div className={s.box}>
+    <div className={s.box} ref={ref}>
       <div className={s.item}>
         <span title="Сумма">{props.sum}</span>
       </div>
@@ -29,4 +29,4 @@ export const OperationShort: React.FC<OperationShortProps> = ({ ...props }) => {
       </div>
     </div>
   );
-};
+});
