@@ -33,10 +33,9 @@ export const List: FC<ListProps> = ({ ...props }) => {
   const itemOperations = operations.map((operation, index) => {
     const isLast = index == operations.length - 1;
     return (
-      <div className={s.box}>
+      <div className={s.box} key={index}>
         <OperationShort
           ref={isLast ? observerRef : null}
-          key={index}
           sum={operation.sum}
           category={operation.category}
           name={operation.name}

@@ -1,4 +1,4 @@
-import React, { FC, forwardRef } from 'react';
+import React, { forwardRef } from 'react';
 import s from './operation-short.module.sass';
 
 export interface OperationShortProps {
@@ -30,3 +30,5 @@ export const OperationShort = forwardRef<HTMLDivElement, OperationShortProps>(({
     </div>
   );
 });
+
+OperationShort.displayName = 'OperationShort';
