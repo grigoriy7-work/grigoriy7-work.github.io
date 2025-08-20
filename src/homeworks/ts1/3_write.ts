@@ -125,7 +125,7 @@ type Profit = {
   type: 'Profit';
 };
 
-type Operation = Cost | Profit;
+export type Operation = Cost | Profit;
 
 const profitCategories: Category[] = [
   { id: '6', name: 'Зарплата' },

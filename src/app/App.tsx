@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 //import logo from './logo.svg';
 import './App.css';
 import { Alert } from '../homeworks/components/alert/Alert';
@@ -10,7 +10,6 @@ import { List } from 'src/homeworks/components/list/List';
 
 function App() {
   const { t, i18n } = useTranslation();
-
   const [color, setColor] = useState<TypeColor>('light');
   const [language, setLanguage] = useState<TypeLanguage>('ru');
 
@@ -33,12 +32,6 @@ function App() {
       name: 'покупка товаров',
       description:
         'продукт отличного качества, довольно высокого качества. Цена выше рынка. Приятно пользоваться, думаю прослужит долго.',
-    },
-    {
-      sum: 700,
-      category: 'расходы1',
-      name: 'покупка товаров1',
-      description: 'продукт отличного качества',
     },
   ];
 
