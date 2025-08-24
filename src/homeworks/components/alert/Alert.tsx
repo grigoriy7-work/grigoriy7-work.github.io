@@ -37,7 +37,7 @@ export const Alert: React.FC = () => {
         <Button text={language.translater('open-window')} clickHandler={() => setIsVisble((prev) => !prev)} />
       </div>
 
-      <ModalWindow title={language.translater('window')} isVisible={isVisible} setVisible={setIsVisble}>
+      <ModalWindow title={language.translater('window')} isVisible={isVisible} hide={() => setIsVisble(false)}>
         <p>{text}</p>
       </ModalWindow>
     </>

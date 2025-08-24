@@ -1,12 +1,14 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 //import logo from './logo.svg';
 import './App.css';
 import { Alert } from '../homeworks/components/alert/Alert';
-import { ThemeContext, TypeColor } from 'src/homeworks/components/ThemeContext';
-import { LanguageContext, TypeLanguage } from 'src/homeworks/components/LanguageContext';
-import { Layout } from 'src/homeworks/components/layout/Layout';
+import { ThemeContext, TypeColor } from '../homeworks/components/ThemeContext';
+import { LanguageContext, TypeLanguage } from '../homeworks/components/LanguageContext';
+import { Layout } from '../homeworks/components/layout/Layout';
 import { useTranslation } from 'react-i18next';
-import { List } from 'src/homeworks/components/list/List';
+import { List } from '../homeworks/components/list/List';
+import { OperationType } from '../homeworks/ts1/3_write';
+import { render } from '../homeworks/components/list/renderItem';
 
 function App() {
   const { t, i18n } = useTranslation();
@@ -25,13 +27,15 @@ function App() {
     });
   };
 
-  const operations = [
+  const operations: Array<OperationType> = [
     {
-      sum: 5000,
-      category: 'расходы',
+      id: '1',
+      type: 'Cost',
+      createdAt: Date.now().toString(),
+      amount: 5000,
+      category: { id: '1', name: 'Продукты' },
       name: 'покупка товаров',
-      description:
-        'продукт отличного качества, довольно высокого качества. Цена выше рынка. Приятно пользоваться, думаю прослужит долго.',
+      desc: 'продукт отличного качества, довольно высокого качества. Цена выше рынка. Приятно пользоваться, думаю прослужит долго.',
     },
   ];
 
@@ -40,7 +44,7 @@ function App() {
       <ThemeContext.Provider value={{ color, setTheme: toogleTheme }}>
         <Layout>
           <Alert />
-          <List operations={operations} />
+          <List operations={operations} render={render} />
         </Layout>
       </ThemeContext.Provider>
     </LanguageContext.Provider>

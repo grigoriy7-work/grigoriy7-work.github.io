@@ -23,7 +23,7 @@
  * - category (Категория)
  **/
 
-type Category = {
+export type Category = {
   id: string;
   name: string;
   photo?: string;
@@ -105,7 +105,7 @@ export const createRandomProduct = (createdAt: string) => {
  * - type ('Profit')
  * */
 
-type Cost = {
+export type Cost = {
   id: string;
   name: string;
   desc?: string;
@@ -125,7 +125,7 @@ type Profit = {
   type: 'Profit';
 };
 
-export type Operation = Cost | Profit;
+export type OperationType = Cost | Profit;
 
 const profitCategories: Category[] = [
   { id: '6', name: 'Зарплата' },
@@ -187,10 +187,10 @@ const profits: Profit[] = [
  * Создает случайную операцию (Operation).
  * Принимает дату создания (строка)
  * */
-export const createRandomOperation = (createdAt: string): Operation => {
+export const createRandomOperation = (createdAt: string): OperationType => {
   const costIndex = Math.floor(Math.random() * costs.length);
   const profitIndex = Math.floor(Math.random() * profits.length);
-  const operation: Operation = Math.random() < 0.5 ? costs[costIndex] : profits[profitIndex];
+  const operation: OperationType = Math.random() < 0.5 ? costs[costIndex] : profits[profitIndex];
   operation.createdAt = createdAt;
   return operation;
 };

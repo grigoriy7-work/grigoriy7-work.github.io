@@ -8,7 +8,7 @@ export interface ModalWindowProps {
   children?: ReactNode | ReactNode[];
   /**Видимость */
   isVisible: boolean;
-  setVisible: (isVisible: boolean) => void;
+  hide: () => void;
 }
 
 export const ModalWindow: React.FC<ModalWindowProps> = ({ ...props }) => {
@@ -19,12 +19,12 @@ export const ModalWindow: React.FC<ModalWindowProps> = ({ ...props }) => {
         <div className={[s.mask, props.isVisible && s['mask--visible']].join(' ')}>
           <div className={[s['modal-window'], props.isVisible && s['modal-window--visible']].join(' ')}>
             <div className={[s.header, s[`header--${theme.color}`]].join(' ')}>
-              <div className={[s.title].join(' ')}>
+              <div className={s.title}>
                 <span>{props.title}</span>
               </div>
 
               <div className={s['close-box']}>
-                <button className={s['close-button']} onClick={() => props.setVisible(false)}>
+                <button className={s['close-button']} onClick={() => props.hide()}>
                   X
                 </button>
               </div>
