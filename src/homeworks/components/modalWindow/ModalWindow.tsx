@@ -13,26 +13,24 @@ export interface ModalWindowProps {
 
 export const ModalWindow: React.FC<ModalWindowProps> = ({ title, children, isVisible, setVisible }) => {
   const theme = useContext(ThemeContext);
-
-  return isVisible
-    ? createPortal(
-        <div className={[s.mask, isVisible && s['mask--visible']].join(' ')}>
-          <div className={[s['modal-window'], isVisible && s['modal-window--visible']].join(' ')}>
-            <div className={[s.header, s[`header--${theme.color}`]].join(' ')}>
-              <div className={[s.title].join(' ')}>
-                <span>{title}</span>
-              </div>
-
-              <div className={s['close-box']}>
-                <button className={s['close-button']} onClick={() => setVisible(false)}>
-                  X
-                </button>
-              </div>
-            </div>
-            <div className={[s.content, s[`content--${theme.color}`]].join(' ')}>{children}</div>
+  if (isVisible === false) return null;
+  return createPortal(
+    <div className={[s.mask, isVisible && s['mask--visible']].join(' ')}>
+      <div className={[s['modal-window'], isVisible && s['modal-window--visible']].join(' ')}>
+        <div className={[s.header, s[`header--${theme.color}`]].join(' ')}>
+          <div className={[s.title].join(' ')}>
+            <span>{title}</span>
           </div>
-        </div>,
-        document.body
-      )
-    : null;
+
+          <div className={s['close-box']}>
+            <button className={s['close-button']} onClick={() => setVisible(false)}>
+              X
+            </button>
+          </div>
+        </div>
+        <div className={[s.content, s[`content--${theme.color}`]].join(' ')}>{children}</div>
+      </div>
+    </div>,
+    document.body
+  );
 };
