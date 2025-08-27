@@ -9,12 +9,12 @@ export interface ListProps {
   operations: OperationShortProps[];
 }
 
-export const List: FC<ListProps> = ({ ...props }) => {
-  const [operations, setOpertations] = useState<Array<OperationShortProps>>(props.operations);
+export const List: FC<ListProps> = ({ operations }) => {
+  const [operationList, setOpertationList] = useState<Array<OperationShortProps>>(operations);
 
   const handleLoadData = useCallback((isVisible: boolean) => {
     if (isVisible === true) {
-      setOpertations((pref) => {
+      setOpertationList((pref) => {
         const operation = createRandomOperation('');
         const short: OperationShortProps = {
           sum: operation.amount,
@@ -30,8 +30,8 @@ export const List: FC<ListProps> = ({ ...props }) => {
   }, []);
 
   const observerRef = useElementOnScreen(handleLoadData);
-  const itemOperations = operations.map((operation, index) => {
-    const isLast = index == operations.length - 1;
+  const itemOperations = operationList.map((operation, index) => {
+    const isLast = index == operationList.length - 1;
     return (
       <div className={s.box} key={index}>
         <OperationShort

@@ -11,25 +11,25 @@ export interface ModalWindowProps {
   setVisible: (isVisible: boolean) => void;
 }
 
-export const ModalWindow: React.FC<ModalWindowProps> = ({ ...props }) => {
+export const ModalWindow: React.FC<ModalWindowProps> = ({ title, children, isVisible, setVisible }) => {
   const theme = useContext(ThemeContext);
 
-  return props.isVisible
+  return isVisible
     ? createPortal(
-        <div className={[s.mask, props.isVisible && s['mask--visible']].join(' ')}>
-          <div className={[s['modal-window'], props.isVisible && s['modal-window--visible']].join(' ')}>
+        <div className={[s.mask, isVisible && s['mask--visible']].join(' ')}>
+          <div className={[s['modal-window'], isVisible && s['modal-window--visible']].join(' ')}>
             <div className={[s.header, s[`header--${theme.color}`]].join(' ')}>
               <div className={[s.title].join(' ')}>
-                <span>{props.title}</span>
+                <span>{title}</span>
               </div>
 
               <div className={s['close-box']}>
-                <button className={s['close-button']} onClick={() => props.setVisible(false)}>
+                <button className={s['close-button']} onClick={() => setVisible(false)}>
                   X
                 </button>
               </div>
             </div>
-            <div className={[s.content, s[`content--${theme.color}`]].join(' ')}>{props.children}</div>
+            <div className={[s.content, s[`content--${theme.color}`]].join(' ')}>{children}</div>
           </div>
         </div>,
         document.body
