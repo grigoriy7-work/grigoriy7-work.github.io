@@ -14,24 +14,24 @@ export interface OperationProps {
   date: Date;
 }
 
-export const Operation: React.FC<OperationProps> = ({ ...props }) => {
+export const Operation: React.FC<OperationProps> = ({ sum, category, name, description, date }) => {
   return (
     <div className={s.box}>
       <div className={s.grid}>
         <span>Сумма</span>
-        <span>{props.sum}</span>
+        <span>{sum}</span>
 
         <span>Категория</span>
-        <span>{props.category}</span>
+        <span>{category}</span>
 
         <span>Название</span>
-        <span>{props.name}</span>
+        <span>{name}</span>
 
         <span>Описание</span>
-        <span>{props.description}</span>
+        <span>{description}</span>
 
         <span>Дата</span>
-        <span>{props.date.toLocaleDateString()}</span>
+        <span>{date.toLocaleDateString()}</span>
       </div>
     </div>
   );
