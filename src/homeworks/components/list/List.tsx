@@ -11,8 +11,8 @@ export interface ListProps {
   render: (operation: OperationType) => React.ReactElement<typeof Operation, typeof OperationShort> | null;
 }
 
-export const List: FC<ListProps> = ({ ...props }) => {
-  const [shortOperations, setShortOpertations] = useState<Array<OperationType>>(props.operations);
+export const List: FC<ListProps> = ({ operations, render }) => {
+  const [shortOperations, setShortOpertations] = useState<Array<OperationType>>(operations);
 
   const handleLoadData = useCallback((isVisible: boolean) => {
     if (isVisible === true) {
@@ -30,7 +30,7 @@ export const List: FC<ListProps> = ({ ...props }) => {
     const isLast = index == shortOperations.length - 1;
     return (
       <div className={s.box} key={index} ref={isLast ? observerRef : null}>
-        {props.render(operation)}
+        {render(operation)}
       </div>
     );
   });
