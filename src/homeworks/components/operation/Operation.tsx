@@ -36,3 +36,5 @@ export const Operation: React.FC<OperationProps> = ({ sum, category, name, descr
     </div>
   );
 };
+
+export const MemoizedOperation = React.memo(Operation);

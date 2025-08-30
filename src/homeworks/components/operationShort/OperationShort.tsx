@@ -34,3 +34,5 @@ export const OperationShort = forwardRef<HTMLDivElement, OperationShortProps>(
 );
 
 OperationShort.displayName = 'OperationShort';
+
+export const MemoizedOperationShort = React.memo(OperationShort);
