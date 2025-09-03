@@ -1,11 +1,11 @@
 import React from 'react';
-import { Operation } from '../operation/Operation';
-import { OperationShort } from '../operationShort/OperationShort';
+import { MemoizedOperation } from '../operation/Operation';
+import { MemoizedOperationShort } from '../operationShort/OperationShort';
 import { OperationType } from '../../ts1/3_write';
 
 const renderOperation = (operation: OperationType) => {
   return (
-    <Operation
+    <MemoizedOperation
       sum={operation.amount}
       category={operation.category.name}
       name={operation.name}
@@ -17,7 +17,7 @@ const renderOperation = (operation: OperationType) => {
 
 const renderShortOperation = (operation: OperationType) => {
   return (
-    <OperationShort
+    <MemoizedOperationShort
       sum={operation.amount}
       category={operation.category.name}
       name={operation.name}

@@ -12,23 +12,27 @@ export interface OperationShortProps {
   description: string;
 }
 
-export const OperationShort = forwardRef<HTMLDivElement, OperationShortProps>(({ ...props }, ref) => {
-  return (
-    <div className={s.box} ref={ref}>
-      <div className={s.item}>
-        <span title="Сумма">{props.sum}</span>
+export const OperationShort = forwardRef<HTMLDivElement, OperationShortProps>(
+  ({ sum, category, name, description }, ref) => {
+    return (
+      <div className={s.box} ref={ref}>
+        <div className={s.item}>
+          <span title="Сумма">{sum}</span>
+        </div>
+        <div className={s.item}>
+          <span title="Категория">{category}</span>
+        </div>
+        <div className={s.item}>
+          <span title="Название">{name}</span>
+        </div>
+        <div className={s.item}>
+          <span title="Описание">{description}</span>
+        </div>
       </div>
-      <div className={s.item}>
-        <span title="Категория">{props.category}</span>
-      </div>
-      <div className={s.item}>
-        <span title="Название">{props.name}</span>
-      </div>
-      <div className={s.item}>
-        <span title="Описание">{props.description}</span>
-      </div>
-    </div>
-  );
-});
+    );
+  }
+);
 
 OperationShort.displayName = 'OperationShort';
+
+export const MemoizedOperationShort = React.memo(OperationShort);
