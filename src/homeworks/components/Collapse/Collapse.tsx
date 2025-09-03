@@ -1,21 +1,7 @@
 import React, { FC, useLayoutEffect, useReducer, useRef } from 'react';
 import cn from 'clsx';
 import s from './Collapse.module.sass';
-
-const useResizeObserver = (callback: (entris: ResizeObserverEntry[]) => void) => {
-  const ref = useRef<HTMLDivElement>(null);
-  React.useEffect(() => {
-    if (!ref.current) return;
-    const observer = new ResizeObserver((entries: ResizeObserverEntry[]) => {
-      callback(entries);
-    });
-    observer.observe(ref.current);
-    return () => {
-      observer.disconnect();
-    };
-  }, [callback]);
-  return [ref];
-};
+import { useResizeObserver } from '../UseResizeObserver';
 
 export type CollapseProps = {
   className?: string;
@@ -53,7 +39,7 @@ export const reducer = (state: CollapseState, action: CollapseActionType) => {
 
 export const Collapse: FC<CollapseProps> = ({ className, opened, children }) => {
   const [resizeRef] = useResizeObserver((entries) => {
-    for (let entry of entries) {
+    for (const entry of entries) {
       const { height, width } = entry.contentRect;
       entry.target.classList.remove(s.small);
       entry.target.classList.remove(s.medium);
@@ -71,7 +57,6 @@ export const Collapse: FC<CollapseProps> = ({ className, opened, children }) => 
 
   const [state, dispatch] = useReducer(reducer, { opened: false, mounted: false });
   const root = useRef<HTMLDivElement>();
-  const wrapper = useRef<HTMLDivElement>();
 
   const onTransitionEnd = (e: React.TransitionEvent) => {
     if (e.target !== e.currentTarget) return;
