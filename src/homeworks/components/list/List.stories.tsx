@@ -26,7 +26,8 @@ const meta: Meta<typeof List> = {
 
 export default meta;
 
-export const Standart: StoryObj<ListProps> = {
+type Story = StoryObj<typeof meta>;
+export const Standart: Story = {
   args: {
     operations: operations,
     render: render,
