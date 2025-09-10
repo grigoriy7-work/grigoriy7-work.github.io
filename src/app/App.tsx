@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-//import logo from './logo.svg';
 import './App.css';
 import { Alert } from '../homeworks/components/alert/Alert';
 import { ThemeContext, TypeColor } from '../homeworks/components/ThemeContext';
