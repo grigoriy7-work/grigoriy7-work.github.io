@@ -7,16 +7,16 @@ interface ButtonProps {
   clickHandler: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-export const Button: React.FC<ButtonProps> = ({ ...props }) => {
-  return <button onClick={props.clickHandler}>{props.text}</button>;
+export const Button: React.FC<ButtonProps> = ({ text, clickHandler }) => {
+  return <button onClick={clickHandler}>{text}</button>;
 };
 
 interface InputTextProps {
   onChange: React.ChangeEventHandler<HTMLInputElement>;
 }
 
-export const InputText: React.FC<InputTextProps> = ({ ...props }) => {
-  return <input type="text" onChange={props.onChange} />;
+export const InputText: React.FC<InputTextProps> = ({ onChange }) => {
+  return <input type="text" onChange={onChange} />;
 };
 
 export const Alert: React.FC = () => {
