@@ -41,9 +41,8 @@ export const Collapse: FC<CollapseProps> = ({ className, opened, children }) => 
   const [resizeRef] = useResizeObserver((entries) => {
     for (const entry of entries) {
       const { height, width } = entry.contentRect;
-      entry.target.classList.remove(s.small);
-      entry.target.classList.remove(s.medium);
-      entry.target.classList.remove(s.large);
+      const classesToRemove = [s.small, s.medium, s.large];
+      classesToRemove.forEach((c) => entry.target.classList.remove(c));
 
       if (height <= 30 && width <= 500) {
         entry.target.classList.add(s.small);
@@ -56,17 +55,20 @@ export const Collapse: FC<CollapseProps> = ({ className, opened, children }) => 
   });
 
   const [state, dispatch] = useReducer(reducer, { opened: false, mounted: false });
-  const root = useRef<HTMLDivElement>();
+  const root = useRef<HTMLDivElement>(null);
 
   const onTransitionEnd = (e: React.TransitionEvent) => {
     if (e.target !== e.currentTarget) return;
     if (state.opened) return;
     dispatch(CollapseActionType.unmount);
+    if (!root.current) return;
     root.current.style.height = '0';
   };
 
   useLayoutEffect(() => {
     if (opened) {
+      if (!root.current) return;
+
       root.current.style.height = 'auto';
       dispatch(CollapseActionType.mount);
       setTimeout(() => dispatch(CollapseActionType.open), 1);
