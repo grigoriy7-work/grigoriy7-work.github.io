@@ -1,15 +1,14 @@
 import React, { memo } from 'react';
 import cn from 'clsx';
-import { Input } from 'antd';
-import { ProfileFormProps } from '../types';
+import Input from 'antd/lib/input';
 import { FormikHandlers } from 'formik/dist/types';
-import { UserOutlined } from '@ant-design/icons';
-import { FormItem } from './../../../../shared/ui/FormItem';
 import { useTranslation } from 'react-i18next';
+import { FormItem } from './../../../../shared/ui/FormItem';
 import { getValidates } from './../../../../utils/validation';
-import s from './NameField.sass';
+import { ProfileFormProps } from '../types';
+import s from './AboutField.sass';
 
-export type NameFieldProps = Pick<ProfileFormProps, 'className' | 'disabled' | 'autoFocusElement'> & {
+export type AboutFieldProps = Pick<ProfileFormProps, 'className' | 'disabled'> & {
   submitCount: number;
   touched: boolean;
   errors: string;
@@ -18,10 +17,8 @@ export type NameFieldProps = Pick<ProfileFormProps, 'className' | 'disabled' | '
   onBlur: FormikHandlers['handleBlur'];
 };
 
-const prefix = <UserOutlined />;
-
-export const NameField = memo<NameFieldProps>(
-  ({ className, onChange, onBlur, autoFocusElement, touched, value, errors, disabled, submitCount }) => {
+export const AboutField = memo<AboutFieldProps>(
+  ({ className, onChange, onBlur, touched, value, errors, disabled, submitCount }) => {
     const { t } = useTranslation();
 
     const { validateStatus, help } = getValidates(errors, touched, submitCount);
@@ -29,24 +26,21 @@ export const NameField = memo<NameFieldProps>(
     return (
       <FormItem
         className={cn(/*s.root,*/ className)}
-        title={t(`forms.ProfileForm.name.title`)}
-        required
+        title={t(`forms.ProfileForm.about.title`)}
         validateStatus={validateStatus}
         help={help}
       >
-        <Input
-          prefix={prefix}
+        <Input.TextArea
           disabled={disabled}
-          ref={autoFocusElement}
-          data-cy="input"
-          autoFocus
-          name="name"
+          name="about"
           onChange={onChange}
           onBlur={onBlur}
           value={value}
-          placeholder={t(`forms.ProfileForm.name.placeholder`)}
+          placeholder={t(`forms.ProfileForm.about.placeholder`)}
         />
       </FormItem>
     );
   }
 );
+
+AboutField.displayName = 'AboutField';

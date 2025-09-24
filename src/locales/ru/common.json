@@ -3,5 +3,30 @@
   "open-window": "открыть окно",
   "window": "окно",
   "light": "светлая",
-  "dark": "темная"
+  "dark": "темная",
+  "screens": {
+    "ProfileScreen": {
+      "title": "Профиль",
+      "updateProfile": {
+        "title": "Изменить профиль",
+        "success": "Профиль успешно изменен",
+        "save": "Сохранить"
+      }
+    }
+  },
+  "forms": {
+    "ProfileForm": {
+      "name": {
+        "title": "Псевдоним",
+        "placeholder": "Придумайте себе псевдоним"
+      },
+      "about": {
+        "title": "О себе",
+        "placeholder": "Напишите что-нибудь о себе"
+      }
+    }
+  },
+  "errors": {
+    "is_required": "Обязательное поле"
+  }
 }
