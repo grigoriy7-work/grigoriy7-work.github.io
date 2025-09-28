@@ -13,54 +13,9 @@ import { FormikConfig, useFormik } from 'formik';
 import { ProfileForm, ProfileFormValues } from '../features/forms/ProfileForm';
 import { ProfileCompletedForm } from 'src/pages/ProfileScreen/ProfileCompletedForm/ProfileCompletedForm';
 import ProfileScreen from 'src/pages/ProfileScreen';
-//import { createErrorHandlers } from './utils/createErrorHandlers';
+import { AuthForm } from '../features/forms/AuthForm/AuthForm';
 
 function App() {
-  /*const { t, i18n } = useTranslation();
-  const [color, setColor] = useState<TypeColor>('light');
-  const [language, setLanguage] = useState<TypeLanguage>('ru');
-
-  const toogleTheme = () => {
-    setColor((prev: string) => (prev === 'light' ? 'dark' : 'light'));
-  };
-
-  const toogleLanguage = () => {
-    setLanguage((prev: string) => {
-      const curentLanguage = prev === 'ru' ? 'en' : 'ru';
-      i18n.changeLanguage(curentLanguage);
-      return curentLanguage;
-    });
-  };
-
-  const operations: Array<OperationType> = [
-    {
-      id: '1',
-      type: 'Cost',
-      createdAt: Date.now().toString(),
-      amount: 5000,
-      category: { id: '1', name: 'Продукты' },
-      name: 'покупка товаров',
-      desc: 'продукт отличного качества, довольно высокого качества. Цена выше рынка. Приятно пользоваться, думаю прослужит долго.',
-    },
-  ];*/
-
-  /*const { onSubmit, initialValues } = useMemo<
-    Pick<FormikConfig<ProfileFormValues>, 'onSubmit' | 'validate' | 'initialValues'>
-  >(() => {
-    return {
-      initialValues: {
-        name: 'profile?.name',
-        about: 'profile?.about',
-      },
-      onSubmit: (values, { setErrors }) => {},
-    };
-  }, []);
-
-  const formManager = useFormik<ProfileFormValues>({
-    initialValues,
-    onSubmit,
-  });*/
-
   const { t, i18n } = useTranslation();
   const [language, setLanguage] = useState<TypeLanguage>('ru');
 
@@ -73,23 +28,15 @@ function App() {
   };
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage: toogleLanguage, translater: t }}>
+    /*<LanguageContext.Provider value={{ language, setLanguage: toogleLanguage, translater: t }}>
       <button onClick={toogleLanguage}>Toogle Language</button>
       <ProfileScreen />
-    </LanguageContext.Provider>
-
-    /*<div>
-      <ProfileForm formManager={formManager} />
-    </div>*/
-
-    /*<LanguageContext.Provider value={{ language, setLanguage: toogleLanguage, translater: t }}>
-      <ThemeContext.Provider value={{ color, setTheme: toogleTheme }}>
-        <Layout>
-          <Alert />
-          <List operations={operations} render={render} />
-        </Layout>
-      </ThemeContext.Provider>
     </LanguageContext.Provider>*/
+
+    <LanguageContext.Provider value={{ language, setLanguage: toogleLanguage, translater: t }}>
+      <button onClick={toogleLanguage}>Toogle Language</button>
+      <AuthForm />
+    </LanguageContext.Provider>
   );
 }
 

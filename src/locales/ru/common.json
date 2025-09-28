@@ -24,9 +24,22 @@
         "title": "О себе",
         "placeholder": "Напишите что-нибудь о себе"
       }
+    },
+    "AuthForm": {
+      "email": {
+        "placeholder": "Введите вашу почту"
+      },
+      "password": {
+        "placeholder": "Укажите ваш пароль"
+      },
+      "submit": {
+        "title": "Отправить"
+      }
     }
   },
   "errors": {
-    "is_required": "Обязательное поле"
+    "is_required": "Обязательное поле",
+    "email_invalid": "Неправильный адрес электронной почты",
+    "password_invalid": "Пароль должен быть не менее 6 символов"
   }
 }

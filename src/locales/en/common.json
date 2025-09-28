@@ -24,9 +24,22 @@
         "title": "About",
         "placeholder": "Write something about yourself"
       }
+    },
+    "AuthForm": {
+      "email": {
+        "placeholder": "Insert your email"
+      },
+      "password": {
+        "placeholder": "Insert your password"
+      },
+      "submit": {
+        "title": "Submit"
+      }
     }
   },
   "errors": {
-    "is_required": "Required field"
+    "is_required": "Required field",
+    "email_invalid": "Invalid email address",
+    "password_invalid": "Password must be at least 6 characters long"
   }
 }
