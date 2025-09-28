@@ -26,11 +26,33 @@
       }
     },
     "AuthForm": {
+      "title": "Registration",
       "email": {
         "placeholder": "Insert your email"
       },
       "password": {
         "placeholder": "Insert your password"
+      },
+      "submit": {
+        "title": "Submit"
+      }
+    },
+    "OperationForm": {
+      "title": "Add operation",
+      "sum": {
+        "placeholder": "Sum"
+      },
+      "description": {
+        "placeholder": "Description"
+      },
+      "category": {
+        "placeholder": "Category"
+      },
+      "name": {
+        "placeholder": "Name"
+      },
+      "date": {
+        "placeholder": "Date"
       },
       "submit": {
         "title": "Submit"

@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { Input, Space } from 'antd';
+import { Input, Space, Button } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
 import { useFormik } from 'formik';
@@ -47,27 +47,30 @@ export const AuthForm = memo(() => {
   });
 
   return (
-    <form onSubmit={formik.handleSubmit}>
-      <Space direction="vertical" size="small">
-        <Input
-          prefix={prefix}
-          name="email"
-          value={formik.values.email}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          placeholder={t('forms.AuthForm.email.placeholder')}
-        />
-        {formik.touched.email && formik.errors.email ? <div>{formik.errors.email}</div> : null}
-        <Input.Password
-          name="password"
-          value={formik.values.password}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          placeholder={t('forms.AuthForm.password.placeholder')}
-        />
-        {formik.touched.password && formik.errors.password ? <div>{formik.errors.password}</div> : null}
-        <button type="submit">{t('forms.AuthForm.submit.title')}</button>
-      </Space>
-    </form>
+    <>
+      <h2>{t('forms.AuthForm.title')}</h2>
+      <form onSubmit={formik.handleSubmit}>
+        <Space direction="vertical" size="small">
+          <Input
+            prefix={prefix}
+            name="email"
+            value={formik.values.email}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            placeholder={t('forms.AuthForm.email.placeholder')}
+          />
+          {formik.touched.email && formik.errors.email ? <div>{formik.errors.email}</div> : null}
+          <Input.Password
+            name="password"
+            value={formik.values.password}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            placeholder={t('forms.AuthForm.password.placeholder')}
+          />
+          {formik.touched.password && formik.errors.password ? <div>{formik.errors.password}</div> : null}
+          <Button htmlType="submit">{t('forms.AuthForm.submit.title')}</Button>
+        </Space>
+      </form>
+    </>
   );
 });

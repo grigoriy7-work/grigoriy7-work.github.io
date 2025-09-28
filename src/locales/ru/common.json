@@ -26,11 +26,33 @@
       }
     },
     "AuthForm": {
+      "title": "Регистрация",
       "email": {
         "placeholder": "Введите вашу почту"
       },
       "password": {
         "placeholder": "Укажите ваш пароль"
+      },
+      "submit": {
+        "title": "Отправить"
+      }
+    },
+    "OperationForm": {
+      "title": "Добавление операции",
+      "sum": {
+        "placeholder": "Сумма"
+      },
+      "description": {
+        "placeholder": "Описание"
+      },
+      "category": {
+        "placeholder": "Категория"
+      },
+      "name": {
+        "placeholder": "Название"
+      },
+      "date": {
+        "placeholder": "Дата"
       },
       "submit": {
         "title": "Отправить"
