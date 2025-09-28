@@ -3,5 +3,65 @@
   "open-window": "открыть окно",
   "window": "окно",
   "light": "светлая",
-  "dark": "темная"
+  "dark": "темная",
+  "screens": {
+    "ProfileScreen": {
+      "title": "Профиль",
+      "updateProfile": {
+        "title": "Изменить профиль",
+        "success": "Профиль успешно изменен",
+        "save": "Сохранить"
+      }
+    }
+  },
+  "forms": {
+    "ProfileForm": {
+      "name": {
+        "title": "Псевдоним",
+        "placeholder": "Придумайте себе псевдоним"
+      },
+      "about": {
+        "title": "О себе",
+        "placeholder": "Напишите что-нибудь о себе"
+      }
+    },
+    "AuthForm": {
+      "title": "Регистрация",
+      "email": {
+        "placeholder": "Введите вашу почту"
+      },
+      "password": {
+        "placeholder": "Укажите ваш пароль"
+      },
+      "submit": {
+        "title": "Отправить"
+      }
+    },
+    "OperationForm": {
+      "title": "Добавление операции",
+      "sum": {
+        "placeholder": "Сумма"
+      },
+      "description": {
+        "placeholder": "Описание"
+      },
+      "category": {
+        "placeholder": "Категория"
+      },
+      "name": {
+        "placeholder": "Название"
+      },
+      "date": {
+        "placeholder": "Дата"
+      },
+      "submit": {
+        "title": "Отправить"
+      }
+    }
+  },
+  "errors": {
+    "is_required": "Обязательное поле",
+    "email_invalid": "Неправильный адрес электронной почты",
+    "password_invalid": "Пароль должен быть не менее 6 символов"
+  }
 }

@@ -3,5 +3,65 @@
   "open-window": "open window",
   "window": "window",
   "light": "light",
-  "dark": "dark"
+  "dark": "dark",
+  "screens": {
+    "ProfileScreen": {
+      "title": "Profile",
+      "updateProfile": {
+        "title": "Change profile",
+        "success": "Profile changed successfully",
+        "save": "Save"
+      }
+    }
+  },
+  "forms": {
+    "ProfileForm": {
+      "name": {
+        "title": "Nickname",
+        "placeholder": "Come up with a pseudonym for yourself"
+      },
+      "about": {
+        "title": "About",
+        "placeholder": "Write something about yourself"
+      }
+    },
+    "AuthForm": {
+      "title": "Registration",
+      "email": {
+        "placeholder": "Insert your email"
+      },
+      "password": {
+        "placeholder": "Insert your password"
+      },
+      "submit": {
+        "title": "Submit"
+      }
+    },
+    "OperationForm": {
+      "title": "Add operation",
+      "sum": {
+        "placeholder": "Sum"
+      },
+      "description": {
+        "placeholder": "Description"
+      },
+      "category": {
+        "placeholder": "Category"
+      },
+      "name": {
+        "placeholder": "Name"
+      },
+      "date": {
+        "placeholder": "Date"
+      },
+      "submit": {
+        "title": "Submit"
+      }
+    }
+  },
+  "errors": {
+    "is_required": "Required field",
+    "email_invalid": "Invalid email address",
+    "password_invalid": "Password must be at least 6 characters long"
+  }
 }
