@@ -3,6 +3,7 @@ import { Input, InputNumber, Space, DatePicker, Select, Button } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { useFormik } from 'formik';
 import Operation from 'antd/es/transfer/operation';
+// eslint-disable-next-line import/named
 import { DollarOutlined } from '@ant-design/icons';
 import dayjs from 'dayjs';
 import s from './OperationForm.module.sass';
@@ -114,3 +115,5 @@ export const OperationForm = memo(() => {
     </>
   );
 });
+
+OperationForm.displayName = 'OperationForm';

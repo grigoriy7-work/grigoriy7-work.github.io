@@ -4,7 +4,7 @@ import s from './ProfileCompletedForm.sass';
 import { Title } from '../../../shared/ui/Title';
 import { useTranslation } from 'react-i18next';
 import { ProfileForm, ProfileFormValues, ProfileFormErrors } from './../../../features/forms/ProfileForm';
-import { FormikConfig, useFormik } from 'formik';
+import * as formik from 'formik';
 import { Button } from 'antd';
 import { isNotDefinedString } from './../../../utils/validation';
 
@@ -20,7 +20,7 @@ export const ProfileCompletedForm = memo<ProfileCompletedFormProps>(({ className
   });
 
   const { onSubmit, validate, initialValues } = useMemo<
-    Pick<FormikConfig<ProfileFormValues>, 'onSubmit' | 'validate' | 'initialValues'>
+    Pick<formik.FormikConfig<ProfileFormValues>, 'onSubmit' | 'validate' | 'initialValues'>
   >(() => {
     return {
       initialValues: {
@@ -40,7 +40,9 @@ export const ProfileCompletedForm = memo<ProfileCompletedFormProps>(({ className
     };
   }, [profile, t]);
 
-  const formManager = useFormik<ProfileFormValues>({
+  ProfileCompletedForm.displayName = 'ProfileCompletedForm';
+
+  const formManager = formik.useFormik<ProfileFormValues>({
     initialValues,
     onSubmit,
     validate,

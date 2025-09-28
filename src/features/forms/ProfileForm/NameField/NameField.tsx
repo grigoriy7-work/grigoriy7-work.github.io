@@ -3,6 +3,7 @@ import cn from 'clsx';
 import { Input } from 'antd';
 import { ProfileFormProps } from '../types';
 import { FormikHandlers } from 'formik/dist/types';
+// eslint-disable-next-line import/named
 import { UserOutlined } from '@ant-design/icons';
 import { FormItem } from './../../../../shared/ui/FormItem';
 import { useTranslation } from 'react-i18next';
@@ -50,3 +51,5 @@ export const NameField = memo<NameFieldProps>(
     );
   }
 );
+
+NameField.displayName = 'NameField';

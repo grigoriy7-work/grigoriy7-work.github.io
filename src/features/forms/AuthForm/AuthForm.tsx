@@ -1,5 +1,7 @@
 import React, { memo } from 'react';
 import { Input, Space, Button } from 'antd';
+
+// eslint-disable-next-line import/named
 import { UserOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
 import { useFormik } from 'formik';
@@ -74,3 +76,5 @@ export const AuthForm = memo(() => {
     </>
   );
 });
+
+AuthForm.displayName = 'AuthForm';

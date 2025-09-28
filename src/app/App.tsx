@@ -9,7 +9,7 @@ import { List } from '../homeworks/components/list/List';
 import { OperationType } from '../homeworks/ts1/3_write';
 import { render } from '../homeworks/components/list/renderItem';
 
-import { FormikConfig, useFormik } from 'formik';
+import * as formik from 'formik';
 import { ProfileForm, ProfileFormValues } from '../features/forms/ProfileForm';
 import { ProfileCompletedForm } from 'src/pages/ProfileScreen/ProfileCompletedForm/ProfileCompletedForm';
 import ProfileScreen from 'src/pages/ProfileScreen';
