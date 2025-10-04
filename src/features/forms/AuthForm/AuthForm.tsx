@@ -5,6 +5,7 @@ import { Input, Space, Button } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
 import { useFormik } from 'formik';
+import s from './AuthForm.module.sass';
 
 type AuthFormProps = {
   email: string;
@@ -49,7 +50,7 @@ export const AuthForm = memo(() => {
   });
 
   return (
-    <>
+    <div>
       <h2>{t('forms.AuthForm.title')}</h2>
       <form onSubmit={formik.handleSubmit}>
         <Space direction="vertical" size="small">
@@ -73,7 +74,7 @@ export const AuthForm = memo(() => {
           <Button htmlType="submit">{t('forms.AuthForm.submit.title')}</Button>
         </Space>
       </form>
-    </>
+    </div>
   );
 });
 

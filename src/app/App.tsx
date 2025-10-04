@@ -14,6 +14,7 @@ import { ProfileForm, ProfileFormValues } from '../features/forms/ProfileForm';
 import { ProfileCompletedForm } from 'src/pages/ProfileScreen/ProfileCompletedForm/ProfileCompletedForm';
 import ProfileScreen from 'src/pages/ProfileScreen';
 import { AuthForm } from '../features/forms/AuthForm/AuthForm';
+import { Routes, Route } from 'react-router-dom';
 
 function App() {
   const { t, i18n } = useTranslation();
@@ -27,16 +28,40 @@ function App() {
     });
   };
 
-  return (
-    /*<LanguageContext.Provider value={{ language, setLanguage: toogleLanguage, translater: t }}>
-      <button onClick={toogleLanguage}>Toogle Language</button>
-      <ProfileScreen />
-    </LanguageContext.Provider>*/
+  const [color, setColor] = useState<TypeColor>('light');
+  const toogleTheme = () => {
+    setColor((prev: string) => (prev === 'light' ? 'dark' : 'light'));
+  };
 
-    <LanguageContext.Provider value={{ language, setLanguage: toogleLanguage, translater: t }}>
-      <button onClick={toogleLanguage}>Toogle Language</button>
-      <AuthForm />
-    </LanguageContext.Provider>
+  return (
+    <div>
+      <LanguageContext.Provider value={{ language, setLanguage: toogleLanguage, translater: t }}>
+        <ThemeContext.Provider value={{ color, setTheme: toogleTheme }}>
+          <Layout>
+            <Routes>
+              <Route path="/" element={<div>Home</div>} />
+              <Route
+                path="/profile"
+                element={
+                  <div>
+                    <ProfileScreen />
+                  </div>
+                }
+              />
+              <Route
+                path="/auth"
+                element={
+                  <div>
+                    <AuthForm />
+                  </div>
+                }
+              />
+              <Route path="*" element={<div>404 Not Found</div>} />
+            </Routes>
+          </Layout>
+        </ThemeContext.Provider>
+      </LanguageContext.Provider>
+    </div>
   );
 }
 
