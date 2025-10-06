@@ -1,0 +1,65 @@
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+        'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+        'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+        monospace;
+}
+
+.App {
+    text-align: center;
+}
+
+.App-logo {
+    height: 40vmin;
+    pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+        animation: App-logo-spin infinite 20s linear;
+    }
+}
+
+.App-header {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
+
+.App-link {
+    color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.header-module_header-NA0Zn{height:90px;display:flex;justify-content:space-between;align-items:center;background-color:#bc8f8f;padding-left:5px;position:fixed;width:100%;z-index:1}.header-module_header-NA0Zn .header-module_control-buttons-BKm81{padding-right:25px}.header-module_header-NA0Zn .header-module_nav-links-Sbawr{display:flex;gap:15px;font-size:18px}.header-module_header-NA0Zn .header-module_nav-links-Sbawr .header-module_nav-link-dMKdh{text-decoration:none;color:#fff}.header-module_header-NA0Zn .header-module_nav-links-Sbawr .header-module_nav-link--active-HuwaO{text-decoration:underline}.header-module_header--light-rDyHy{color:#000}.header-module_header--dark-LX3fM{background-color:gray;color:#fff}
+.logo-module_logo-QXAaO{padding:5px;display:inline-block;background-color:#fff;border-radius:50%}.logo-module_logo-QXAaO img{border-radius:50%}
+.layout-module_content-ItCCI{display:flex;justify-content:start;align-items:center;padding-top:90px;flex-direction:column;min-height:calc(100vh - 90px)}.layout-module_content--dark-qW8wZ{background-color:silver;color:whitbackgre}
+.ProfileCompletedForm_title-NFlB6{font-size:16px;margin-bottom:12px}
+.Page-module_root-S1bDQ{padding-bottom:60px}.Page-module_page-TIjka{padding:20px;margin-top:20px;border-radius:8px}.Page-module_title-ODo4O{margin-top:20px;font-weight:500}
+.list-module_box-OYM_T{padding-top:5px;padding-bottom:5px}
+.operation-module_box-yV9DG{border:1px solid silver;border-radius:5px;display:inline-block;padding:10px}.operation-module_box-yV9DG .operation-module_grid-mO9mw{display:grid;grid-template-columns:100px 2fr;row-gap:10px}.operation-module_box-yV9DG .operation-module_grid-mO9mw span{border-bottom:1px solid silver}
+.operation-short-module_box-jwpY7{padding:10px;border:1px solid silver;border-radius:5px;display:flex;justify-content:start;height:30px;width:350px}.operation-short-module_box-jwpY7 .operation-short-module_item-l6TiH{border-left:1px solid silver;padding-left:5px;padding-right:10px;max-width:100px;display:flex;justify-content:center;align-items:center}.operation-short-module_box-jwpY7 .operation-short-module_item-l6TiH:first-child{border-left:none}.operation-short-module_box-jwpY7 .operation-short-module_item-l6TiH span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.modal-window-module_mask-xDH1N{height:100vh;width:100vw;position:absolute;top:0px;background-color:#708090;display:none}.modal-window-module_modal-window-VY9dE{border-radius:6px;background-color:#fff;display:none}.modal-window-module_modal-window-VY9dE .modal-window-module_header-Btdhl{height:30px;display:flex;flex-direction:row;justify-content:space-between;border-radius:5px 5px 0 0;border-bottom:1px solid silver}.modal-window-module_modal-window-VY9dE .modal-window-module_header-Btdhl .modal-window-module_close-box-PW5iE{width:30px;border-radius:0 5px 0 0;background-color:#fff;user-select:none;display:flex;justify-content:center;align-items:center}.modal-window-module_modal-window-VY9dE .modal-window-module_header-Btdhl .modal-window-module_close-box-PW5iE .modal-window-module_close-button-g1a5y{height:100%;width:100%;border:none;border-radius:0 5px 0 0}.modal-window-module_modal-window-VY9dE .modal-window-module_header-Btdhl .modal-window-module_title-WfKXQ{width:100%;display:flex;align-self:center;justify-content:center}.modal-window-module_modal-window-VY9dE .modal-window-module_header--light-Tm3iM{background-color:#fff;color:#000}.modal-window-module_modal-window-VY9dE .modal-window-module_header--dark-ZIxgI{background-color:gray;color:#fff}.modal-window-module_modal-window-VY9dE .modal-window-module_content-YIySq{padding:10px;display:flex;flex-direction:column;gap:10px}.modal-window-module_modal-window-VY9dE .modal-window-module_content--dark-desej{background-color:silver}.modal-window-module_modal-window--visible-N3hHs{display:block}.modal-window-module_mask--visible-uTjMn{display:flex;justify-content:center;align-items:center}
+.OperationForm-module_field-gNur5{width:250px}
+
+/*# sourceMappingURL=main.css.map*/
