@@ -35,8 +35,8 @@ jobs:
         run: npm run lint && npm test
 
       # Собираем приложение
-      #- name: Build Application
-      #  run: npm run build
+      - name: Build Application
+        run: npm run build
 
       # Публикуем приложение на Github Pages
       - name: Deploy to Github Pages
@@ -46,8 +46,8 @@ jobs:
           folder: dist
 
       # Собираем Storybook
-      - name: Build Storybook
-        run: npm run build-storybook
+      #- name: Build Storybook
+      #  run: npm run build-storybook
 
       # Публикуем Storybook на Github Pages
       #- name: Deploy Storybook to Github Pages
