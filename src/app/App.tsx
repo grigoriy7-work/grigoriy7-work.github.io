@@ -12,9 +12,11 @@ import { render } from '../homeworks/components/list/renderItem';
 import * as formik from 'formik';
 import { ProfileForm, ProfileFormValues } from '../features/forms/ProfileForm';
 import { ProfileCompletedForm } from 'src/pages/ProfileScreen/ProfileCompletedForm/ProfileCompletedForm';
-import ProfileScreen from 'src/pages/ProfileScreen';
-import { AuthForm } from '../features/forms/AuthForm/AuthForm';
+import ProfileScreen from '../pages/ProfileScreen';
+import { AuthScreen } from '../pages/AuthScreen/index';
 import { Routes, Route } from 'react-router-dom';
+import { OperationScreen } from '../pages/OperationScreen/index';
+import { HomeScreen } from '../pages/HomeScreen/index';
 
 function App() {
   const { t, i18n } = useTranslation();
@@ -39,23 +41,10 @@ function App() {
         <ThemeContext.Provider value={{ color, setTheme: toogleTheme }}>
           <Layout>
             <Routes>
-              <Route path="/" element={<div>Home</div>} />
-              <Route
-                path="/profile"
-                element={
-                  <div>
-                    <ProfileScreen />
-                  </div>
-                }
-              />
-              <Route
-                path="/auth"
-                element={
-                  <div>
-                    <AuthForm />
-                  </div>
-                }
-              />
+              <Route path="/" element={<HomeScreen />} />
+              <Route path="/profile" element={<ProfileScreen />} />
+              <Route path="/auth" element={<AuthScreen />} />
+              <Route path="/operations" element={<OperationScreen />} />
               <Route path="*" element={<div>404 Not Found</div>} />
             </Routes>
           </Layout>

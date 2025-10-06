@@ -1,9 +1,13 @@
 {
   "theme": "theme",
-  "open-window": "open window",
   "window": "window",
   "light": "light",
   "dark": "dark",
+  "header": {
+    "registration": "Registration",
+    "profile": "Profile",
+    "operations": "Operations"
+  },
   "screens": {
     "ProfileScreen": {
       "title": "Profile",
@@ -12,6 +16,9 @@
         "success": "Profile changed successfully",
         "save": "Save"
       }
+    },
+    "HomeScreen": {
+      "title": "Home page"
     }
   },
   "forms": {

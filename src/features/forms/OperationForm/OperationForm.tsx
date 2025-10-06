@@ -57,7 +57,6 @@ export const OperationForm = memo(() => {
 
   return (
     <>
-      <h2>{t('forms.OperationForm.title')}</h2>
       <form onSubmit={formik.handleSubmit}>
         <Space direction="vertical" size="small">
           <InputNumber
