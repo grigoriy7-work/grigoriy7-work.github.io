@@ -1,5 +1,5 @@
 import { calculatePrice } from './AccountService';
-import { userDiscounts, userProductDiscounts } from './data';
+import { userDiscounts } from './data';
 import { getUserDiscount, getProductDiscount } from './dataLoader';
 
 jest.mock('./dataLoader', () => ({
@@ -117,7 +117,6 @@ describe('calculatePrice', () => {
     it('food for gold expect error', async () => {
       const price = 1500;
       const userType = 'Gold';
-      //const userDiscount = userDiscounts[userType];
       const productDiscount = 1.25;
       mockedGetUserDiscount.mockReturnValue(new Promise((resolve, reject) => reject('Ошибка')));
       mockedGetProductDiscount.mockReturnValue(new Promise((resolve) => resolve(productDiscount)));

@@ -1,11 +1,5 @@
 import { UserType, ProductType, ProductInfo } from './types';
-//import { userProductDiscounts } from './data';
 import { getUserDiscount, getProductDiscount } from './dataLoader';
-
-/*const getProductDiscount = (userType: UserType, productType: ProductType): number => {
-  const userProduct = userProductDiscounts.find((up) => up.userType === userType && up.productType === productType);
-  return userProduct ? userProduct.discount : 0;
-};*/
 
 export const calculateDiscount = async (userType: UserType, productType: ProductType): Promise<number> => {
   let discount = 0;

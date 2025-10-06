@@ -1,9 +1,13 @@
 {
   "theme": "тема",
-  "open-window": "открыть окно",
   "window": "окно",
   "light": "светлая",
   "dark": "темная",
+  "header": {
+    "registration": "Регистрация",
+    "profile": "Профиль",
+    "operations": "Операции"
+  },
   "screens": {
     "ProfileScreen": {
       "title": "Профиль",
@@ -12,6 +16,9 @@
         "success": "Профиль успешно изменен",
         "save": "Сохранить"
       }
+    },
+    "HomeScreen": {
+      "title": "Главная страница"
     }
   },
   "forms": {
