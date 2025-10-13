@@ -6,6 +6,9 @@ import { UserOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
 import { useFormik } from 'formik';
 import s from './AuthForm.module.sass';
+import { useSelector, useDispatch } from 'react-redux';
+import { setToken } from '../../redux/AuthSlice';
+import { RootState } from '../../redux/store';
 
 type AuthFormProps = {
   email: string;
@@ -17,7 +20,7 @@ type User = {
   password: string;
 };
 
-const prefix = <UserOutlined />;
+const prefix = <UserOutlined rev={''} />;
 
 export const AuthForm = memo(() => {
   const { t } = useTranslation();
@@ -46,12 +49,22 @@ export const AuthForm = memo(() => {
     validate,
     onSubmit: (values) => {
       console.log(values);
+
+      if (token === '') {
+        const newToken = crypto.randomUUID();
+        dispatch(setToken(newToken));
+      }
     },
   });
+
+  const token = useSelector((state: RootState) => state.auth.token);
+  console.log('token1', token);
+  const dispatch = useDispatch();
 
   return (
     <div>
       <h2>{t('forms.AuthForm.title')}</h2>
+      <span>{token}</span>
       <form onSubmit={formik.handleSubmit}>
         <Space direction="vertical" size="small">
           <Input

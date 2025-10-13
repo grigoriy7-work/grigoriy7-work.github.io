@@ -19,7 +19,7 @@ export type NameFieldProps = Pick<ProfileFormProps, 'className' | 'disabled' | '
   onBlur: FormikHandlers['handleBlur'];
 };
 
-const prefix = <UserOutlined />;
+const prefix = <UserOutlined rev={''} />;
 
 export const NameField = memo<NameFieldProps>(
   ({ className, onChange, onBlur, autoFocusElement, touched, value, errors, disabled, submitCount }) => {

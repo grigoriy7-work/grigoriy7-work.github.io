@@ -7,6 +7,7 @@ import { ProfileForm, ProfileFormValues, ProfileFormErrors } from './../../../fe
 import * as formik from 'formik';
 import { Button } from 'antd';
 import { isNotDefinedString } from './../../../utils/validation';
+import { useSelector } from 'react-redux';
 
 export type ProfileCompletedFormProps = {
   className?: string;

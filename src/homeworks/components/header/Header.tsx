@@ -6,6 +6,7 @@ import { ThemeSwithcer } from '../themeSwitcher/ThemeSwitcher';
 import { LanguageeSwithcer } from '../languageSwitcher/LanguageSwitcher';
 import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { LogOut } from '../logOut';
 
 export const Header: React.FC = () => {
   const theme = useContext(ThemeContext);
@@ -34,6 +35,7 @@ export const Header: React.FC = () => {
         </NavLink>
       </div>
       <div className={s['control-buttons']}>
+        <LogOut />
         <ThemeSwithcer />
         <LanguageeSwithcer />
       </div>
