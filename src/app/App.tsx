@@ -19,6 +19,7 @@ import { OperationScreen } from '../pages/OperationScreen/index';
 import { HomeScreen } from '../pages/HomeScreen/index';
 import { useSelector } from 'react-redux';
 import { RootState } from '../features/redux/store';
+import { OperationAddScreen } from '../pages/OperationAddScreen';
 
 function App() {
   const { t, i18n } = useTranslation();
@@ -47,6 +48,7 @@ function App() {
               <Route path="/profile" element={token === '' ? <Navigate to="/auth" replace /> : <ProfileScreen />} />
               <Route path="/auth" element={<AuthScreen />} />
               <Route path="/operations" element={<OperationScreen />} />
+              <Route path="/add-operation" element={<OperationAddScreen />} />
               <Route path="*" element={<div>404 Not Found</div>} />
             </Routes>
           </Layout>
