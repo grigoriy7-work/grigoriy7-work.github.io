@@ -32,6 +32,12 @@ export const Header: React.FC = () => {
         >
           {t('header.operations')}
         </NavLink>
+        <NavLink
+          className={({ isActive }) => `${s['nav-link']} ${isActive ? s['nav-link--active'] : ''}`}
+          to="/add-operation"
+        >
+          {t('header.add-operation')}
+        </NavLink>
       </div>
       <div className={s['control-buttons']}>
         <ThemeSwithcer />

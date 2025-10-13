@@ -6,7 +6,8 @@
   "header": {
     "registration": "Registration",
     "profile": "Profile",
-    "operations": "Operations"
+    "operations": "Operations",
+    "add-operation": "Add operation"
   },
   "screens": {
     "ProfileScreen": {
