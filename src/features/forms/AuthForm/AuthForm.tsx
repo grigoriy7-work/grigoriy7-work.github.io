@@ -1,6 +1,5 @@
-import React, { memo } from 'react';
+import React, { memo, useEffect } from 'react';
 import { Input, Space, Button } from 'antd';
-
 // eslint-disable-next-line import/named
 import { UserOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
@@ -8,7 +7,8 @@ import { useFormik } from 'formik';
 import s from './AuthForm.module.sass';
 import { useSelector, useDispatch } from 'react-redux';
 import { setToken } from '../../redux/AuthSlice';
-import { RootState } from '../../redux/store';
+import { RootState, AppDispatch } from '../../redux/store';
+import { fetchProfile } from '../../redux/AuthSlice';
 
 type AuthFormProps = {
   email: string;
@@ -24,6 +24,7 @@ const prefix = <UserOutlined rev={''} />;
 
 export const AuthForm = memo(() => {
   const { t } = useTranslation();
+  const dispatch = useDispatch<AppDispatch>();
 
   const validate = (values: User) => {
     const errors: Partial<User> = {};
@@ -43,8 +44,8 @@ export const AuthForm = memo(() => {
 
   const formik = useFormik({
     initialValues: {
-      email: '',
-      password: '',
+      email: 'admin@test.com',
+      password: '123123',
     },
     validate,
     onSubmit: (values) => {
@@ -53,13 +54,12 @@ export const AuthForm = memo(() => {
       if (token === '') {
         const newToken = crypto.randomUUID();
         dispatch(setToken(newToken));
+        dispatch(fetchProfile());
       }
     },
   });
 
   const token = useSelector((state: RootState) => state.auth.token);
-  console.log('token1', token);
-  const dispatch = useDispatch();
 
   return (
     <div>

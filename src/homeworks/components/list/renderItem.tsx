@@ -7,8 +7,8 @@ const renderOperation = (operation: OperationType) => {
   return (
     <Operation
       sum={operation.amount}
-      category={operation.category.name}
-      name={operation.name}
+      category={operation.category?.name || 'нет'}
+      name={operation.name || ''}
       description={operation.desc || ''}
       date={new Date(operation.createdAt)}
     />
@@ -19,8 +19,8 @@ const renderShortOperation = (operation: OperationType) => {
   return (
     <OperationShort
       sum={operation.amount}
-      category={operation.category.name}
-      name={operation.name}
+      category={operation?.category?.name || 'нет'}
+      name={operation.name || ''}
       description={operation.desc || ''}
     />
   );

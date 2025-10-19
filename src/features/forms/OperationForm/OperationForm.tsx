@@ -2,33 +2,24 @@ import React, { memo } from 'react';
 import { Input, InputNumber, Space, DatePicker, Select, Button } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { useFormik } from 'formik';
-import Operation from 'antd/es/transfer/operation';
 // eslint-disable-next-line import/named
 import { DollarOutlined } from '@ant-design/icons';
 import dayjs from 'dayjs';
 import s from './OperationForm.module.sass';
 import cn from 'clsx';
-
-interface Operation {
-  /**сумма */
-  sum: number;
-  /**название категории */
-  category: string;
-  /**название */
-  name: string;
-  /**описание */
-  description: string;
-  /**дата */
-  date: Date;
-}
+import { useDispatch } from 'react-redux';
+import { setOperation } from '../../redux/OperationSlice';
+import { AppDispatch } from '../../redux/store';
+import { OperationType } from '../../redux/types';
 
 export const OperationForm = memo(() => {
   const { t } = useTranslation();
   const { TextArea } = Input;
   const prefix = <DollarOutlined />;
+  const dispatch = useDispatch<AppDispatch>();
 
-  const validate = (values: Operation) => {
-    const errors: Partial<Operation> = {};
+  const validate = (values: OperationType) => {
+    const errors: Partial<OperationType> = {};
 
     if (!values.name) {
       errors.name = t('errors.is_required');
@@ -41,17 +32,23 @@ export const OperationForm = memo(() => {
     return errors;
   };
 
-  const formik = useFormik<Operation>({
+  const formik = useFormik<OperationType>({
     initialValues: {
-      sum: 1,
-      category: 'Расход',
+      id: '0',
+      amount: 1,
+      type: 'Расход',
       name: '',
       description: '',
-      date: new Date(Date.now()),
+      createdAt: new Date(Date.now()).toISOString(),
     },
     validate,
     onSubmit: (values) => {
       console.log(values);
+      const operation: OperationType = {
+        ...values,
+      };
+
+      dispatch(setOperation(operation));
     },
   });
 
@@ -61,8 +58,8 @@ export const OperationForm = memo(() => {
         <Space direction="vertical" size="small">
           <InputNumber
             prefix={prefix}
-            value={formik.values.sum}
-            onChange={(value) => formik.setFieldValue('sum', value)}
+            value={formik.values.amount}
+            onChange={(value) => formik.setFieldValue('amount', value)}
             onBlur={formik.handleBlur}
             min={0}
             max={1000}
@@ -70,13 +67,13 @@ export const OperationForm = memo(() => {
             className={cn(s.field)}
           />
           <Select
-            placeholder={t('forms.OperationForm.category.placeholder')}
-            defaultValue={formik.values.category}
-            onChange={formik.handleChange}
+            placeholder={t('forms.OperationForm.type.placeholder')}
+            defaultValue={formik.values.type}
+            onChange={(value) => formik.setFieldValue('type', value)}
             onBlur={formik.handleBlur}
-            options={['Доход', 'Расход'].map((category) => ({
-              label: category,
-              value: category,
+            options={['Доход', 'Расход'].map((type) => ({
+              label: type,
+              value: type,
             }))}
             className={cn(s.field)}
           />
@@ -100,8 +97,8 @@ export const OperationForm = memo(() => {
           />
           {formik.touched.description && formik.errors.description ? <div>{formik.errors.description}</div> : null}
           <DatePicker
-            name="date"
-            placeholder={t('forms.OperationForm.date.placeholder')}
+            name="createdAt"
+            placeholder={t('forms.OperationForm.createdAt.placeholder')}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={dayjs(Date.now())}

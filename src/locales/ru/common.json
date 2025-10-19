@@ -3,6 +3,7 @@
   "window": "окно",
   "light": "светлая",
   "dark": "темная",
+  "no-access": "Нет доступа",
   "header": {
     "registration": "Регистрация",
     "profile": "Профиль",
@@ -47,19 +48,19 @@
     },
     "OperationForm": {
       "title": "Добавление операции",
-      "sum": {
+      "amount": {
         "placeholder": "Сумма"
       },
       "description": {
         "placeholder": "Описание"
       },
-      "category": {
+      "type": {
         "placeholder": "Категория"
       },
       "name": {
         "placeholder": "Название"
       },
-      "date": {
+      "createdAt": {
         "placeholder": "Дата"
       },
       "submit": {

@@ -3,6 +3,7 @@
   "window": "window",
   "light": "light",
   "dark": "dark",
+  "no-access": "No access",
   "header": {
     "registration": "Registration",
     "profile": "Profile",
@@ -47,19 +48,19 @@
     },
     "OperationForm": {
       "title": "Add operation",
-      "sum": {
-        "placeholder": "Sum"
+      "amount": {
+        "placeholder": "Amount"
       },
       "description": {
         "placeholder": "Description"
       },
-      "category": {
-        "placeholder": "Category"
+      "type": {
+        "placeholder": "Type"
       },
       "name": {
         "placeholder": "Name"
       },
-      "date": {
+      "createdAt": {
         "placeholder": "Date"
       },
       "submit": {

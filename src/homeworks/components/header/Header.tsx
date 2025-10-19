@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import s from './header.module.sass';
 import { Logo } from '../logo/Logo';
 import { ThemeContext } from '../ThemeContext';

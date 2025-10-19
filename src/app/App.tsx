@@ -20,6 +20,7 @@ import { HomeScreen } from '../pages/HomeScreen/index';
 import { useSelector } from 'react-redux';
 import { RootState } from '../features/redux/store';
 import { OperationAddScreen } from '../pages/OperationAddScreen';
+import { ProtectedRoute } from '../features/route/ProtectedRoute';
 
 function App() {
   const { t, i18n } = useTranslation();
@@ -45,10 +46,14 @@ function App() {
           <Layout>
             <Routes>
               <Route path="/" element={<HomeScreen />} />
-              <Route path="/profile" element={token === '' ? <Navigate to="/auth" replace /> : <ProfileScreen />} />
+              <Route element={<ProtectedRoute />}>
+                <Route path="/profile" element={<ProfileScreen />} />
+              </Route>
               <Route path="/auth" element={<AuthScreen />} />
               <Route path="/operations" element={<OperationScreen />} />
-              <Route path="/add-operation" element={<OperationAddScreen />} />
+              <Route element={<ProtectedRoute allowedRoles={['admin']} />}>
+                <Route path="/add-operation" element={<OperationAddScreen />} />
+              </Route>
               <Route path="*" element={<div>404 Not Found</div>} />
             </Routes>
           </Layout>
