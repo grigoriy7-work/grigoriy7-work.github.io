@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { Profile, AuthState } from './types';
 
-const profile: Profile = { email: 'admin@test.com', name: 'John', about: 'test', role: 'user' };
+const profile: Profile = { email: 'admin@test.com', name: 'John', about: 'test', role: 'admin' };
 
 export const fetchProfile = createAsyncThunk('profile/fetchProfile', async (): Promise<Profile> => {
   return new Promise((resolve) => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Operation } from '../operation/Operation';
 import { OperationShort } from '../operationShort/OperationShort';
-import { OperationType } from '../../ts1/3_write';
+import { OperationType } from 'src/features/redux/types';
 
 const renderOperation = (operation: OperationType) => {
   return (
@@ -9,7 +9,7 @@ const renderOperation = (operation: OperationType) => {
       sum={operation.amount}
       category={operation.category?.name || 'нет'}
       name={operation.name || ''}
-      description={operation.desc || ''}
+      description={operation.description || ''}
       date={new Date(operation.createdAt)}
     />
   );
@@ -21,7 +21,7 @@ const renderShortOperation = (operation: OperationType) => {
       sum={operation.amount}
       category={operation?.category?.name || 'нет'}
       name={operation.name || ''}
-      description={operation.desc || ''}
+      description={operation.description || ''}
     />
   );
 };
