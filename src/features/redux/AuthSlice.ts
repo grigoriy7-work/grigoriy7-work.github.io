@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/named
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { Profile, AuthState } from './types';
 
