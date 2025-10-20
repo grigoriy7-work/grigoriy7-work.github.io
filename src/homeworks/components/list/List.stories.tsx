@@ -24,9 +24,10 @@ const meta: Meta<typeof List> = {
   },
 };
 
+type Story = StoryObj<typeof meta>;
+
 export default meta;
 
-type Story = StoryObj<typeof meta>;
 export const Standart: Story = {
   args: {
     operations: operations,

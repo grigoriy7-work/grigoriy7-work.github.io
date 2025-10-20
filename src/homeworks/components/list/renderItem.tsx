@@ -1,11 +1,11 @@
 import React from 'react';
-import { Operation } from '../operation/Operation';
-import { OperationShort } from '../operationShort/OperationShort';
-import { OperationType } from 'src/features/redux/types';
+import { OperationType } from '../../../features/redux/types';
+import { MemoizedOperation } from '../operation/Operation';
+import { MemoizedOperationShort } from '../operationShort/OperationShort';
 
 const renderOperation = (operation: OperationType) => {
   return (
-    <Operation
+    <MemoizedOperation
       sum={operation.amount}
       category={operation.category?.name || 'нет'}
       name={operation.name || ''}
@@ -17,7 +17,7 @@ const renderOperation = (operation: OperationType) => {
 
 const renderShortOperation = (operation: OperationType) => {
   return (
-    <OperationShort
+    <MemoizedOperationShort
       sum={operation.amount}
       category={operation?.category?.name || 'нет'}
       name={operation.name || ''}
