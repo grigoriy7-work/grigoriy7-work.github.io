@@ -1,4 +1,5 @@
 import React, { FC, useEffect } from 'react';
+// eslint-disable-next-line import/named
 import { LogoutOutlined } from '@ant-design/icons';
 import s from './logout.module.sass';
 import { Button } from 'antd';
