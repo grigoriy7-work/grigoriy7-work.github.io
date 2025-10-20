@@ -1,4 +1,4 @@
-import React, { memo, useMemo } from 'react';
+import React, { memo, useMemo, useEffect } from 'react';
 import cn from 'clsx';
 import s from './ProfileCompletedForm.sass';
 import { Title } from '../../../shared/ui/Title';
@@ -7,6 +7,8 @@ import { ProfileForm, ProfileFormValues, ProfileFormErrors } from './../../../fe
 import * as formik from 'formik';
 import { Button } from 'antd';
 import { isNotDefinedString } from './../../../utils/validation';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../features/redux/store';
 
 export type ProfileCompletedFormProps = {
   className?: string;
@@ -14,10 +16,7 @@ export type ProfileCompletedFormProps = {
 
 export const ProfileCompletedForm = memo<ProfileCompletedFormProps>(({ className }) => {
   const { t } = useTranslation();
-  const [profile, setProfile] = React.useState<{ name?: string; about?: string } | null>({
-    name: 'John Doe',
-    about: 'programmer',
-  });
+  const profile = useSelector((state: RootState) => state.auth.profile);
 
   const { onSubmit, validate, initialValues } = useMemo<
     Pick<formik.FormikConfig<ProfileFormValues>, 'onSubmit' | 'validate' | 'initialValues'>

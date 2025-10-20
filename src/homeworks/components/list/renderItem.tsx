@@ -1,15 +1,15 @@
 import React from 'react';
+import { OperationType } from '../../../features/redux/types';
 import { MemoizedOperation } from '../operation/Operation';
 import { MemoizedOperationShort } from '../operationShort/OperationShort';
-import { OperationType } from '../../ts1/3_write';
 
 const renderOperation = (operation: OperationType) => {
   return (
     <MemoizedOperation
       sum={operation.amount}
-      category={operation.category.name}
-      name={operation.name}
-      description={operation.desc || ''}
+      category={operation.category?.name || 'нет'}
+      name={operation.name || ''}
+      description={operation.description || ''}
       date={new Date(operation.createdAt)}
     />
   );
@@ -19,9 +19,9 @@ const renderShortOperation = (operation: OperationType) => {
   return (
     <MemoizedOperationShort
       sum={operation.amount}
-      category={operation.category.name}
-      name={operation.name}
-      description={operation.desc || ''}
+      category={operation?.category?.name || 'нет'}
+      name={operation.name || ''}
+      description={operation.description || ''}
     />
   );
 };

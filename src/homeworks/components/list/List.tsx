@@ -1,9 +1,10 @@
 import React, { FC, useCallback, useState } from 'react';
 import { useElementOnScreen } from './../UseElementOnScreen';
-import { createRandomOperation, OperationType } from './../../ts1/3_write';
+import { createRandomOperation } from './../../ts1/3_write';
 import s from './list.module.sass';
 import { Operation } from '../operation/Operation';
 import { OperationShort } from '../operationShort/OperationShort';
+import { OperationType } from 'src/features/redux/types';
 
 export interface ListProps {
   /**краткий список операций */
@@ -14,7 +15,7 @@ export interface ListProps {
 export const List: FC<ListProps> = ({ operations, render }) => {
   const [shortOperations, setShortOpertations] = useState<Array<OperationType>>(operations);
 
-  const handleLoadData = useCallback((isVisible: boolean) => {
+  /*const handleLoadData = useCallback((isVisible: boolean) => {
     if (isVisible === true) {
       setShortOpertations((pref) => {
         const operation = createRandomOperation('');
@@ -23,13 +24,13 @@ export const List: FC<ListProps> = ({ operations, render }) => {
         return allOperations;
       });
     }
-  }, []);
+  }, []);*/
 
-  const observerRef = useElementOnScreen(handleLoadData);
+  //const observerRef = useElementOnScreen(handleLoadData);
   const itemOperations = shortOperations.map((operation, index) => {
     const isLast = index == shortOperations.length - 1;
     return (
-      <div className={s.box} key={index} ref={isLast ? observerRef : null}>
+      <div className={s.box} key={index} /*ref={isLast ? observerRef : null}*/>
         {render(operation)}
       </div>
     );
