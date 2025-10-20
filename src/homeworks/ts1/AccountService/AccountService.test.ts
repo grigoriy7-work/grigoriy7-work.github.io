@@ -126,7 +126,7 @@ describe('calculatePrice', () => {
           type: 'Food',
           price: price,
         })
-      ).rejects.toThrowError('Ошибка при расчете цены');
+      ).rejects.toThrow('Ошибка при расчете цены');
     });
   });
 });

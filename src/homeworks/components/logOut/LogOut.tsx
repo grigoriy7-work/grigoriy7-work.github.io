@@ -5,8 +5,7 @@ import s from './logout.module.sass';
 import { Button } from 'antd';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from './../../../features/redux/store';
-import { clearToken, setToken, clearProfile } from './../../../features/redux/AuthSlice';
-import { fetchProfile } from '../../../features/redux/AuthSlice';
+import { clearToken, setToken, clearProfile, fetchProfile } from './../../../features/redux/AuthSlice';
 
 export const LogOut: FC = () => {
   const dispatch = useDispatch<AppDispatch>();
