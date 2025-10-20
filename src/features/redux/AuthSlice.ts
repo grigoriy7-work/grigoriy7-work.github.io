@@ -38,7 +38,7 @@ export const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchProfile.pending, (state, action) => {})
+      //.addCase(fetchProfile.pending, (state, action) => {})
       .addCase(fetchProfile.fulfilled, (state, action: PayloadAction<Profile>) => {
         state.profile = action.payload;
       })

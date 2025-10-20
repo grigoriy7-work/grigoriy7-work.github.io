@@ -6,9 +6,8 @@ import { useTranslation } from 'react-i18next';
 import { useFormik } from 'formik';
 import s from './AuthForm.module.sass';
 import { useSelector, useDispatch } from 'react-redux';
-import { setToken } from '../../redux/AuthSlice';
+import { setToken, fetchProfile } from '../../redux/AuthSlice';
 import { RootState, AppDispatch } from '../../redux/store';
-import { fetchProfile } from '../../redux/AuthSlice';
 
 type AuthFormProps = {
   email: string;
