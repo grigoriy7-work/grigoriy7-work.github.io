@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from 'react';
+import React, { memo, useCallback, useEffect, useState } from 'react';
 import { Input, Space, Button } from 'antd';
 // eslint-disable-next-line import/named
 import { UserOutlined } from '@ant-design/icons';
@@ -8,11 +8,7 @@ import s from './AuthForm.module.sass';
 import { useSelector, useDispatch } from 'react-redux';
 import { setToken, fetchProfile } from '../../redux/AuthSlice';
 import { RootState, AppDispatch } from '../../redux/store';
-
-type AuthFormProps = {
-  email: string;
-  password: string;
-};
+import { AuthResult, SignUpBody, ResultFetchAuth } from './types';
 
 type User = {
   email: string;
@@ -20,6 +16,35 @@ type User = {
 };
 
 const prefix = <UserOutlined rev={''} />;
+
+const fetchAuthData = async (email: string, passowrd: string) => {
+  const commandId = 'OTUS_React-2025-05';
+  const resultFetchAuth: ResultFetchAuth = {};
+
+  try {
+    const signUpBody: SignUpBody = {
+      email: email,
+      password: passowrd,
+      commandId: commandId,
+    };
+
+    const response = await fetch('http://19429ba06ff2.vps.myjino.ru/api/signup1', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(signUpBody),
+    });
+
+    if (!response.ok) throw new Error('Ошибка при отправки запроса регистрации!');
+    const result: AuthResult = await response.json();
+    resultFetchAuth.authResult = result;
+  } catch (error) {
+    resultFetchAuth.serverErrors = error;
+  }
+
+  return resultFetchAuth;
+};
 
 export const AuthForm = memo(() => {
   const { t } = useTranslation();
@@ -47,13 +72,17 @@ export const AuthForm = memo(() => {
       password: '123123',
     },
     validate,
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       console.log(values);
 
       if (token === '') {
-        const newToken = crypto.randomUUID();
-        dispatch(setToken(newToken));
-        dispatch(fetchProfile());
+        //const newToken = crypto.randomUUID();
+        const authData = await fetchAuthData(values.email, values.password);
+        if (authData.authResult != null) {
+          const newToken = authData.authResult?.token;
+          dispatch(setToken(newToken));
+          dispatch(fetchProfile());
+        }
       }
     },
   });
