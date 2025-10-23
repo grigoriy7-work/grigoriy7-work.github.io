@@ -1,6 +1,8 @@
 // eslint-disable-next-line import/named
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { Profile, AuthState } from './types';
+import { fetchAuthData } from '../forms/AuthForm/registration';
+import { AuthResult, ResultFetchAuth } from '../forms/AuthForm/types';
 
 const profile: Profile = { email: 'admin@test.com', name: 'John', about: 'test', role: 'admin' };
 
@@ -11,6 +13,23 @@ export const fetchProfile = createAsyncThunk('profile/fetchProfile', async (): P
     }, 500);
   });
 });
+
+export const fetchRegistration = createAsyncThunk(
+  'auth/fetchRegistration',
+  async (args: { email: string; password: string }): Promise<AuthResult> => {
+    return new Promise((resolve, reject) => {
+      fetchAuthData(args.email, args.password)
+        .then((authData) => {
+          if (authData.authResult != null) {
+            resolve({ token: authData.authResult.token });
+          }
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
+  }
+);
 
 const initialState: AuthState = {
   token: localStorage.getItem('token') || '',
@@ -43,6 +62,12 @@ export const authSlice = createSlice({
         state.profile = action.payload;
       })
       .addCase(fetchProfile.rejected, (state, action) => {
+        console.error(action.payload);
+      })
+      .addCase(fetchRegistration.fulfilled, (state, action: PayloadAction<AuthResult>) => {
+        state.token = action.payload.token;
+      })
+      .addCase(fetchRegistration.rejected, (state, action) => {
         console.error(action.payload);
       });
   },

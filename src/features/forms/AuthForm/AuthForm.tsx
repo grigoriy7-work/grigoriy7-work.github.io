@@ -6,9 +6,9 @@ import { useTranslation } from 'react-i18next';
 import { useFormik } from 'formik';
 import s from './AuthForm.module.sass';
 import { useSelector, useDispatch } from 'react-redux';
-import { setToken, fetchProfile } from '../../redux/AuthSlice';
+import { setToken, fetchProfile, fetchRegistration } from '../../redux/AuthSlice';
 import { RootState, AppDispatch } from '../../redux/store';
-import { AuthResult, SignUpBody, ResultFetchAuth } from './types';
+import { fetchAuthData } from './registration';
 
 type User = {
   email: string;
@@ -16,35 +16,6 @@ type User = {
 };
 
 const prefix = <UserOutlined rev={''} />;
-
-const fetchAuthData = async (email: string, passowrd: string) => {
-  const commandId = 'OTUS_React-2025-05';
-  const resultFetchAuth: ResultFetchAuth = {};
-
-  try {
-    const signUpBody: SignUpBody = {
-      email: email,
-      password: passowrd,
-      commandId: commandId,
-    };
-
-    const response = await fetch('http://19429ba06ff2.vps.myjino.ru/api/signup1', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(signUpBody),
-    });
-
-    if (!response.ok) throw new Error('Ошибка при отправки запроса регистрации!');
-    const result: AuthResult = await response.json();
-    resultFetchAuth.authResult = result;
-  } catch (error) {
-    resultFetchAuth.serverErrors = error;
-  }
-
-  return resultFetchAuth;
-};
 
 export const AuthForm = memo(() => {
   const { t } = useTranslation();
@@ -76,13 +47,20 @@ export const AuthForm = memo(() => {
       console.log(values);
 
       if (token === '') {
+        //1
         //const newToken = crypto.randomUUID();
-        const authData = await fetchAuthData(values.email, values.password);
-        if (authData.authResult != null) {
-          const newToken = authData.authResult?.token;
-          dispatch(setToken(newToken));
-          dispatch(fetchProfile());
-        }
+        //dispatch(setToken(newToken));
+        //dispatch(fetchProfile());
+        //2
+        //const authData = await fetchAuthData(values.email, values.password);
+        //if (authData.authResult != null) {
+        //  const newToken = authData.authResult?.token;
+        //  dispatch(setToken(newToken));
+        //  dispatch(fetchProfile());
+        //}
+        //3
+        //dispatch(fetchRegistration({ email: values.email, password: values.password }));
+        //dispatch(fetchProfile());
       }
     },
   });
