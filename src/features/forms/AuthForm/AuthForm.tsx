@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { useFormik } from 'formik';
 import s from './AuthForm.module.sass';
 import { useSelector, useDispatch } from 'react-redux';
-import { setToken, fetchProfile, fetchRegistration } from '../../redux/AuthSlice';
+import { setToken, fetchProfile, fetchRegistration, registrationStart } from '../../redux/AuthSlice';
 import { RootState, AppDispatch } from '../../redux/store';
 import { fetchAuthData } from './registration';
 
@@ -47,20 +47,22 @@ export const AuthForm = memo(() => {
       console.log(values);
 
       if (token === '') {
-        //1
+        //0
         //const newToken = crypto.randomUUID();
         //dispatch(setToken(newToken));
         //dispatch(fetchProfile());
-        //2
+        //1
         //const authData = await fetchAuthData(values.email, values.password);
         //if (authData.authResult != null) {
         //  const newToken = authData.authResult?.token;
         //  dispatch(setToken(newToken));
         //  dispatch(fetchProfile());
         //}
-        //3
+        //2
         //dispatch(fetchRegistration({ email: values.email, password: values.password }));
         //dispatch(fetchProfile());
+        //3
+        dispatch(registrationStart({ email: values.email, password: values.password }));
       }
     },
   });

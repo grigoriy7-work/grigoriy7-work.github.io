@@ -1,8 +1,8 @@
 // eslint-disable-next-line import/named
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import { Profile, AuthState } from './types';
+import { Profile, AuthState, RegistationData } from './types';
 import { fetchAuthData } from '../forms/AuthForm/registration';
-import { AuthResult, ResultFetchAuth } from '../forms/AuthForm/types';
+import { AuthResult } from '../forms/AuthForm/types';
 
 const profile: Profile = { email: 'admin@test.com', name: 'John', about: 'test', role: 'admin' };
 
@@ -35,6 +35,7 @@ const initialState: AuthState = {
   token: localStorage.getItem('token') || '',
   isAuthenticated: localStorage.getItem('token') !== '',
   profile: localStorage.getItem('token') !== '' ? profile : null,
+  loading: false,
 };
 
 export const authSlice = createSlice({
@@ -53,6 +54,19 @@ export const authSlice = createSlice({
     },
     clearProfile: (state) => {
       state.profile = null;
+    },
+    registrationStart: (state, action: PayloadAction<RegistationData>) => {
+      state.loading = true;
+    },
+    registrationSuccess: (state, action: PayloadAction<string>) => {
+      state.token = action.payload;
+      localStorage.setItem('token', action.payload);
+      state.isAuthenticated = true;
+      state.loading = false;
+    },
+    registrationFailure: (state, action: PayloadAction<string>) => {
+      state.loading = false;
+      console.error(action.payload);
     },
   },
   extraReducers: (builder) => {
@@ -73,6 +87,7 @@ export const authSlice = createSlice({
   },
 });
 
-export const { setToken, clearToken, clearProfile } = authSlice.actions;
+export const { setToken, clearToken, clearProfile, registrationStart, registrationSuccess, registrationFailure } =
+  authSlice.actions;
 
 export default authSlice.reducer;

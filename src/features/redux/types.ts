@@ -11,6 +11,7 @@ export interface AuthState {
   token: string;
   isAuthenticated: boolean;
   profile?: Profile;
+  loading: boolean;
 }
 
 export interface OperationState {
@@ -36,3 +37,8 @@ export interface OperationType {
   createdAt: string;
   category?: CategoryType;
 }
+
+export type RegistationData = {
+  email: string;
+  password: string;
+};
