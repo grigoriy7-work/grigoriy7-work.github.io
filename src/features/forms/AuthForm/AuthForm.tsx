@@ -9,6 +9,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setToken, fetchProfile, fetchRegistration, registrationStart } from '../../redux/AuthSlice';
 import { RootState, AppDispatch } from '../../redux/store';
 import { fetchAuthData } from './registration';
+import { useSignUpMutation } from '../../redux/authQuery';
 
 type User = {
   email: string;
@@ -20,6 +21,7 @@ const prefix = <UserOutlined rev={''} />;
 export const AuthForm = memo(() => {
   const { t } = useTranslation();
   const dispatch = useDispatch<AppDispatch>();
+  const [signUpUser, { data, error, isLoading }] = useSignUpMutation();
 
   const validate = (values: User) => {
     const errors: Partial<User> = {};
@@ -62,7 +64,9 @@ export const AuthForm = memo(() => {
         //dispatch(fetchRegistration({ email: values.email, password: values.password }));
         //dispatch(fetchProfile());
         //3
-        dispatch(registrationStart({ email: values.email, password: values.password }));
+        //dispatch(registrationStart({ email: values.email, password: values.password }));
+        //4
+        //signUpUser({ email: values.email, password: values.password, commandId: 'OTUS_React-2025-05' });
       }
     },
   });
