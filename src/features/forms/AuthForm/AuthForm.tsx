@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useEffect, useState } from 'react';
-import { Input, Space, Button } from 'antd';
+import { Input, Space, Button, Select } from 'antd';
 // eslint-disable-next-line import/named
 import { UserOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
@@ -14,6 +14,7 @@ import { useSignUpMutation } from '../../redux/authQuery';
 type User = {
   email: string;
   password: string;
+  typeRequest?: 'Random' | 'Запрос' | 'Thunk' | 'Saga' | 'RTK Query';
 };
 
 const prefix = <UserOutlined rev={''} />;
@@ -43,30 +44,45 @@ export const AuthForm = memo(() => {
     initialValues: {
       email: 'admin@test.com',
       password: '123123',
+      typeRequest: 'Random',
     },
     validate,
     onSubmit: async (values) => {
       console.log(values);
 
       if (token === '') {
-        //0
-        //const newToken = crypto.randomUUID();
-        //dispatch(setToken(newToken));
-        //dispatch(fetchProfile());
-        //1
-        //const authData = await fetchAuthData(values.email, values.password);
-        //if (authData.authResult != null) {
-        //  const newToken = authData.authResult?.token;
-        //  dispatch(setToken(newToken));
-        //  dispatch(fetchProfile());
-        //}
-        //2
-        //dispatch(fetchRegistration({ email: values.email, password: values.password }));
-        //dispatch(fetchProfile());
-        //3
-        //dispatch(registrationStart({ email: values.email, password: values.password }));
-        //4
-        //signUpUser({ email: values.email, password: values.password, commandId: 'OTUS_React-2025-05' });
+        console.info('Submitting form with values:', values);
+        switch (values.typeRequest) {
+          case 'Random':
+            const newToken = crypto.randomUUID();
+            dispatch(setToken(newToken));
+            dispatch(fetchProfile());
+            break;
+          case 'Запрос':
+            try {
+              const authData = await fetchAuthData(values.email, values.password);
+              if (authData.authResult != null) {
+                const newToken = authData.authResult?.token;
+                dispatch(setToken(newToken));
+                dispatch(fetchProfile());
+              }
+            } catch (error) {
+              console.error('Registration error:', error);
+            }
+            break;
+          case 'Thunk':
+            dispatch(fetchRegistration({ email: values.email, password: values.password }));
+            dispatch(fetchProfile());
+            break;
+          case 'Saga':
+            dispatch(registrationStart({ email: values.email, password: values.password }));
+            break;
+          case 'RTK Query':
+            signUpUser({ email: values.email, password: values.password, commandId: 'OTUS_React-2025-05' });
+            break;
+          default:
+            break;
+        }
       }
     },
   });
@@ -96,6 +112,17 @@ export const AuthForm = memo(() => {
             placeholder={t('forms.AuthForm.password.placeholder')}
           />
           {formik.touched.password && formik.errors.password ? <div>{formik.errors.password}</div> : null}
+          <Select
+            value={formik.values.typeRequest}
+            placeholder={t('forms.AuthForm.type-request')}
+            defaultValue={'Random'}
+            onChange={(value) => formik.setFieldValue('typeRequest', value)}
+            onBlur={formik.handleBlur}
+            options={['Random', 'Запрос', 'Thunk', 'Saga', 'RTK Query'].map((type) => ({
+              label: type,
+              value: type,
+            }))}
+          />
           <Button htmlType="submit">{t('forms.AuthForm.submit.title')}</Button>
         </Space>
       </form>
