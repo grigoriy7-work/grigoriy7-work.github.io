@@ -48,7 +48,7 @@ export const AuthForm = memo(() => {
     if (token !== '') {
       dispatch(fetchProfile());
     }
-  }, [token]);
+  }, [token, dispatch]);
 
   /*const validate = (values: User) => {
     const errors: Partial<User> = {};
@@ -79,8 +79,7 @@ export const AuthForm = memo(() => {
       if (token === '') {
         switch (values.typeRequest) {
           case 'Random':
-            const newToken = crypto.randomUUID();
-            dispatch(setToken(newToken));
+            dispatch(setToken(crypto.randomUUID()));
             break;
           case 'Запрос':
             try {

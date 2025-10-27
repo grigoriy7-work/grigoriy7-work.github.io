@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/named
 import { PayloadAction } from '@reduxjs/toolkit';
 import { ResultFetchAuth } from '../forms/AuthForm/types';
 import { registrationFailure, registrationSuccess } from './AuthSlice';
