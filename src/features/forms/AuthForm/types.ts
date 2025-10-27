@@ -30,7 +30,6 @@ export type ServerErrors = {
     extensions: {
       code: ErrorCode;
     };
-
     name: string;
     fieldName?: string;
     stack: string;

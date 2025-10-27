@@ -1,4 +1,4 @@
-import { AuthResult, ResultFetchAuth, SignUpBody } from './types';
+import { AuthResult, ResultFetchAuth, ServerErrors, SignUpBody } from './types';
 
 export const fetchAuthData = async (email: string, passowrd: string) => {
   const commandId = 'OTUS_React-2025-05';
@@ -18,13 +18,14 @@ export const fetchAuthData = async (email: string, passowrd: string) => {
       },
       body: JSON.stringify(signUpBody),
     });
-
-    if (!response.ok) throw new Error('Ошибка при отправки запроса регистрации!');
-    const result: AuthResult = await response.json();
-    resultFetchAuth.authResult = result;
+    const result = await response.json();
+    if (response.ok) {
+      resultFetchAuth.authResult = result as AuthResult;
+    } else {
+      resultFetchAuth.serverErrors = result as ServerErrors;
+    }
+    return resultFetchAuth;
   } catch (error) {
-    resultFetchAuth.serverErrors = error;
+    throw new Error('Error fetching auth data: ' + error);
   }
-
-  return resultFetchAuth;
 };

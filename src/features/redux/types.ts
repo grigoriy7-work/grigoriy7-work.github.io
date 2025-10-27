@@ -1,4 +1,5 @@
 import { Role } from '../../types/roles';
+import { ServerErrors } from '../forms/AuthForm/types';
 
 export interface Profile {
   email: string;
@@ -12,6 +13,7 @@ export interface AuthState {
   isAuthenticated: boolean;
   profile?: Profile;
   loading: boolean;
+  errorRegistration?: ServerErrors | null;
 }
 
 export interface OperationState {

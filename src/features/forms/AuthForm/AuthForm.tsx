@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useEffect, useState } from 'react';
+import React, { memo, useCallback, useEffect } from 'react';
 import { Input, Space, Button, Select } from 'antd';
 // eslint-disable-next-line import/named
 import { UserOutlined } from '@ant-design/icons';
@@ -10,6 +10,7 @@ import { setToken, fetchProfile, fetchRegistration, registrationStart } from '..
 import { RootState, AppDispatch } from '../../redux/store';
 import { fetchAuthData } from './registration';
 import { useSignUpMutation } from '../../redux/authQuery';
+import { ServerErrors } from './types';
 
 type User = {
   email: string;
@@ -22,9 +23,34 @@ const prefix = <UserOutlined rev={''} />;
 export const AuthForm = memo(() => {
   const { t } = useTranslation();
   const dispatch = useDispatch<AppDispatch>();
-  const [signUpUser, { data, error, isLoading }] = useSignUpMutation();
+  const [signUpUser, { isError: isErrorQueryRegistration, error: errorQueryRegistration }] = useSignUpMutation();
+  const errorRegistration = useSelector((state: RootState) => state.auth.errorRegistration);
+  const token = useSelector((state: RootState) => state.auth.token);
 
-  const validate = (values: User) => {
+  useEffect(() => {
+    if (errorRegistration) {
+      const firstMessageError =
+        errorRegistration.errors.length > 0 ? errorRegistration.errors[0].message : 'Unknown error';
+      alert(firstMessageError);
+    }
+
+    if (isErrorQueryRegistration && errorQueryRegistration) {
+      if ('data' in errorQueryRegistration) {
+        const authData = errorQueryRegistration.data as ServerErrors;
+        const firstMessageError = authData.errors.length > 0 ? authData.errors[0].message : 'Unknown error';
+        alert(firstMessageError);
+      }
+    }
+  }, [errorRegistration, errorQueryRegistration, isErrorQueryRegistration]);
+
+  useEffect(() => {
+    console.log('AuthForm Token changed:', token);
+    if (token !== '') {
+      dispatch(fetchProfile());
+    }
+  }, [token]);
+
+  /*const validate = (values: User) => {
     const errors: Partial<User> = {};
     if (!values.email) {
       errors.email = t('errors.is_required');
@@ -38,25 +64,23 @@ export const AuthForm = memo(() => {
       errors.password = t('errors.password_invalid');
     }
     return errors;
-  };
+  };*/
 
   const formik = useFormik({
     initialValues: {
       email: 'admin@test.com',
       password: '123123',
-      typeRequest: 'Random',
+      typeRequest: 'Запрос',
     },
-    validate,
+    //validate,
     onSubmit: async (values) => {
       console.log(values);
 
       if (token === '') {
-        console.info('Submitting form with values:', values);
         switch (values.typeRequest) {
           case 'Random':
             const newToken = crypto.randomUUID();
             dispatch(setToken(newToken));
-            dispatch(fetchProfile());
             break;
           case 'Запрос':
             try {
@@ -64,7 +88,11 @@ export const AuthForm = memo(() => {
               if (authData.authResult != null) {
                 const newToken = authData.authResult?.token;
                 dispatch(setToken(newToken));
-                dispatch(fetchProfile());
+              }
+              if (authData.serverErrors != null) {
+                const fisrtMessageError =
+                  authData.serverErrors?.errors.length > 0 ? authData.serverErrors.errors[0].message : 'Unknown error';
+                alert(fisrtMessageError);
               }
             } catch (error) {
               console.error('Registration error:', error);
@@ -72,13 +100,16 @@ export const AuthForm = memo(() => {
             break;
           case 'Thunk':
             dispatch(fetchRegistration({ email: values.email, password: values.password }));
-            dispatch(fetchProfile());
             break;
           case 'Saga':
             dispatch(registrationStart({ email: values.email, password: values.password }));
             break;
           case 'RTK Query':
-            signUpUser({ email: values.email, password: values.password, commandId: 'OTUS_React-2025-05' });
+            await signUpUser({
+              email: values.email,
+              password: values.password,
+              commandId: 'OTUS_React-2025-05',
+            });
             break;
           default:
             break;
@@ -86,8 +117,6 @@ export const AuthForm = memo(() => {
       }
     },
   });
-
-  const token = useSelector((state: RootState) => state.auth.token);
 
   return (
     <div>
@@ -115,13 +144,14 @@ export const AuthForm = memo(() => {
           <Select
             value={formik.values.typeRequest}
             placeholder={t('forms.AuthForm.type-request')}
-            defaultValue={'Random'}
+            defaultValue={'Запрос'}
             onChange={(value) => formik.setFieldValue('typeRequest', value)}
             onBlur={formik.handleBlur}
-            options={['Random', 'Запрос', 'Thunk', 'Saga', 'RTK Query'].map((type) => ({
+            options={['Запрос', 'Thunk', 'Saga', 'RTK Query', 'Random'].map((type) => ({
               label: type,
               value: type,
             }))}
+            style={{ width: 200 }}
           />
           <Button htmlType="submit">{t('forms.AuthForm.submit.title')}</Button>
         </Space>

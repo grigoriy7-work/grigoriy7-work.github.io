@@ -1,7 +1,7 @@
 import { PayloadAction } from '@reduxjs/toolkit';
 import { ResultFetchAuth } from '../forms/AuthForm/types';
 import { registrationFailure, registrationSuccess } from './AuthSlice';
-import { takeLatest } from 'redux-saga/effects';
+import { put, takeLatest } from 'redux-saga/effects';
 import { fetchAuthData } from '../forms/AuthForm/registration';
 import { RegistationData } from './types';
 
@@ -21,11 +21,10 @@ export function* handleRegistration(action: RegistrationAction) {
   const result: ResultFetchAuth = yield fetchRegistrationSaga(email, password);
   const { authResult, serverErrors } = result;
 
-  if (authResult) {
-    yield registrationSuccess(authResult.token);
-  } else if (serverErrors) {
-    const firstError = serverErrors.errors[0];
-    yield registrationFailure(firstError.message);
+  if (authResult != null) {
+    yield put(registrationSuccess(authResult.token));
+  } else if (serverErrors != null) {
+    yield put(registrationFailure(serverErrors));
   }
 }
 
