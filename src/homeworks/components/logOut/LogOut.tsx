@@ -6,9 +6,11 @@ import { Button } from 'antd';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from './../../../features/redux/store';
 import { clearToken, setToken, clearProfile, fetchProfile } from './../../../features/redux/AuthSlice';
+import { useTranslation } from 'react-i18next';
 
 export const LogOut: FC = () => {
   const dispatch = useDispatch<AppDispatch>();
+  const { t } = useTranslation();
 
   useEffect(() => {
     const localStorageListener = (event: StorageEvent) => {
@@ -33,7 +35,7 @@ export const LogOut: FC = () => {
   };
 
   return (
-    <Button type="text" onClick={clickHandler}>
+    <Button type="text" onClick={clickHandler} title={t('header.log-out')}>
       <LogoutOutlined />
     </Button>
   );

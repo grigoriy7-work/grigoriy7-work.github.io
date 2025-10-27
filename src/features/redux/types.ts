@@ -1,4 +1,5 @@
 import { Role } from '../../types/roles';
+import { ServerErrors } from '../forms/AuthForm/types';
 
 export interface Profile {
   email: string;
@@ -11,6 +12,8 @@ export interface AuthState {
   token: string;
   isAuthenticated: boolean;
   profile?: Profile;
+  loading: boolean;
+  errorRegistration?: ServerErrors | null;
 }
 
 export interface OperationState {
@@ -36,3 +39,8 @@ export interface OperationType {
   createdAt: string;
   category?: CategoryType;
 }
+
+export type RegistationData = {
+  email: string;
+  password: string;
+};

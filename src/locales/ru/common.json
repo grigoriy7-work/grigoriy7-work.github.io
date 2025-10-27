@@ -8,7 +8,8 @@
     "registration": "Регистрация",
     "profile": "Профиль",
     "operations": "Операции",
-    "add-operation": "Добавить операцию"
+    "add-operation": "Добавить операцию",
+    "log-out": "Выйти"
   },
   "screens": {
     "ProfileScreen": {
@@ -44,7 +45,8 @@
       },
       "submit": {
         "title": "Отправить"
-      }
+      },
+      "type-request": "Тип запроса"
     },
     "OperationForm": {
       "title": "Добавление операции",
