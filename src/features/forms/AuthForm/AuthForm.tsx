@@ -121,7 +121,7 @@ export const AuthForm = memo(() => {
   return (
     <div>
       <h2>{t('forms.AuthForm.title')}</h2>
-      <span>{token}</span>
+      <span>Токен: {token}</span>
       <form onSubmit={formik.handleSubmit}>
         <Space direction="vertical" size="small">
           <Input

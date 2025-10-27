@@ -8,7 +8,8 @@
     "registration": "Registration",
     "profile": "Profile",
     "operations": "Operations",
-    "add-operation": "Add operation"
+    "add-operation": "Add operation",
+    "log-out": "Log out"
   },
   "screens": {
     "ProfileScreen": {
