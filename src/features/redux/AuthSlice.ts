@@ -33,8 +33,8 @@ export const fetchRegistration = createAsyncThunk<
 
 const initialState: AuthState = {
   token: localStorage.getItem('token') || '',
-  isAuthenticated: localStorage.getItem('token') !== '',
-  profile: localStorage.getItem('token') !== '' ? profile : null,
+  isAuthenticated: localStorage.getItem('token') !== null && localStorage.getItem('token') !== '',
+  profile: localStorage.getItem('token') !== null && localStorage.getItem('token') !== '' ? profile : null,
   loading: false,
   errorRegistration: null,
 };
