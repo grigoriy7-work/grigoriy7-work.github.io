@@ -9,7 +9,9 @@
     "profile": "Профиль",
     "operations": "Операции",
     "add-operation": "Добавить операцию",
-    "log-out": "Выйти"
+    "log-out": "Выйти",
+    "login": "Вход",
+    "registration-graphql": "Регистрация (GraphQL)"
   },
   "screens": {
     "ProfileScreen": {

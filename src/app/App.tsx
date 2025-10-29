@@ -21,6 +21,8 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../features/redux/store';
 import { OperationAddScreen } from '../pages/OperationAddScreen';
 import { ProtectedRoute } from '../features/route/ProtectedRoute';
+import { LoginScreen } from '../pages/LoginScreen';
+import { RegistrationScreen } from '../pages/RegistrationScreen';
 
 function App() {
   const { t, i18n } = useTranslation();
@@ -49,6 +51,8 @@ function App() {
               <Route element={<ProtectedRoute />}>
                 <Route path="/profile" element={<ProfileScreen />} />
               </Route>
+              <Route path="/login" element={<LoginScreen />} />
+              <Route path="/registration" element={<RegistrationScreen />} />
               <Route path="/auth" element={<AuthScreen />} />
               <Route path="/operations" element={<OperationScreen />} />
               <Route element={<ProtectedRoute allowedRoles={['admin']} />}>

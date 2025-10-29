@@ -18,6 +18,15 @@ export const Header: React.FC = () => {
         <Logo />
       </NavLink>
       <div className={s['nav-links']}>
+        <NavLink className={({ isActive }) => `${s['nav-link']} ${isActive ? s['nav-link--active'] : ''}`} to="/login">
+          {t('header.login')}
+        </NavLink>
+        <NavLink
+          className={({ isActive }) => `${s['nav-link']} ${isActive ? s['nav-link--active'] : ''}`}
+          to="/registration"
+        >
+          {t('header.registration-graphql')}
+        </NavLink>
         <NavLink className={({ isActive }) => `${s['nav-link']} ${isActive ? s['nav-link--active'] : ''}`} to="/auth">
           {t('header.registration')}
         </NavLink>
