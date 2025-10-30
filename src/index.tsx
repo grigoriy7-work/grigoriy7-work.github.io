@@ -6,6 +6,9 @@ import './i18n';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from './features/redux/store';
+// eslint-disable-next-line import/named
+import { ApolloProvider } from '@apollo/client/react';
+import { apolloClient } from './features/graphql/apolloClient';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
@@ -13,7 +16,9 @@ root.render(
     <Provider store={store}>
       <BrowserRouter>
         <Suspense fallback={<div>Перевод...</div>}>
-          <App />
+          <ApolloProvider client={apolloClient}>
+            <App />
+          </ApolloProvider>
         </Suspense>
       </BrowserRouter>
     </Provider>
