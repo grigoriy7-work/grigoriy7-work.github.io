@@ -10,8 +10,7 @@
     "operations": "Операции",
     "add-operation": "Добавить операцию",
     "log-out": "Выйти",
-    "login": "Вход",
-    "registration-graphql": "Регистрация (GraphQL)"
+    "login": "Вход"
   },
   "screens": {
     "ProfileScreen": {

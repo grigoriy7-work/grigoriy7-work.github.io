@@ -107,7 +107,7 @@ export const AuthForm = memo(() => {
             await signUpUser({
               email: values.email,
               password: values.password,
-              commandId: 'OTUS_React-2025-05',
+              commandId: 'OTUS_React-2025-05_Grigoriy',
             });
             break;
           default:

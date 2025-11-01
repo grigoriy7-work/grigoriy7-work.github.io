@@ -25,7 +25,7 @@ export const Header: React.FC = () => {
           className={({ isActive }) => `${s['nav-link']} ${isActive ? s['nav-link--active'] : ''}`}
           to="/registration"
         >
-          {t('header.registration-graphql')}
+          {'Регистрация 2'}
         </NavLink>
         <NavLink className={({ isActive }) => `${s['nav-link']} ${isActive ? s['nav-link--active'] : ''}`} to="/auth">
           {t('header.registration')}

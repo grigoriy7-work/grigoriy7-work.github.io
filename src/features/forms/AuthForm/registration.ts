@@ -1,7 +1,7 @@
 import { AuthResult, ResultFetchAuth, ServerErrors, SignUpBody } from './types';
 
 export const fetchAuthData = async (email: string, passowrd: string) => {
-  const commandId = 'OTUS_React-2025-05';
+  const commandId = 'OTUS_React-2025-05_Grigoriy';
   const resultFetchAuth: ResultFetchAuth = {};
 
   try {

@@ -10,8 +10,7 @@
     "operations": "Operations",
     "add-operation": "Add operation",
     "log-out": "Log out",
-    "login": "Login",
-    "registration-graphql": "Registration (GraphQL)"
+    "login": "Login"
   },
   "screens": {
     "ProfileScreen": {
