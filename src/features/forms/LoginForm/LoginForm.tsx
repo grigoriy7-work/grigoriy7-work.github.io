@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Input, Space, Button } from 'antd';
+import { Input, Space, Button, message } from 'antd';
 // eslint-disable-next-line import/named
 import { UserOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
@@ -11,6 +11,7 @@ import { setToken } from '../../redux/AuthSlice';
 import { useLocation } from 'react-router-dom';
 import { LoginHandlerAsync, LOGIN_MUTATION, SignupHandlerAsync, SIGNUP_MUTATION } from './handlers';
 import type { LoginVariables, LoginResponse, SignupVariables, SignupResponse } from './handlers';
+import { ServerErrors } from '../../graphql/types';
 
 const prefix = <UserOutlined rev={''} />;
 
@@ -23,9 +24,21 @@ export const LoginForm: FC = () => {
     SIGNUP_MUTATION
   );
   const location = useLocation();
+  const [messageApi, contextHolder] = message.useMessage();
 
   const eventAfter = (newToken: string) => {
     dispatch(setToken(newToken));
+    messageApi.open({
+      type: 'success',
+      content: `Токен получен: ${newToken}`,
+    });
+  };
+
+  const eventError = (err: ServerErrors) => {
+    messageApi.open({
+      type: 'error',
+      content: `Ошибка авторизации: ${err.errors[0].message || 'Unknown error'}`,
+    });
   };
 
   const commandId = 'OTUS_React-2025-05_Grigoriy';
@@ -41,11 +54,11 @@ export const LoginForm: FC = () => {
       switch (location.pathname) {
         case '/login':
           console.log('Login submit');
-          await LoginHandlerAsync(values, loginMutation, eventAfter);
+          await LoginHandlerAsync(values, loginMutation, eventAfter, eventError);
           break;
         case '/registration':
           console.log('Registration submit');
-          await SignupHandlerAsync({ ...values, commandId }, signupMutation, eventAfter);
+          await SignupHandlerAsync({ ...values, commandId }, signupMutation, eventAfter, eventError);
           break;
       }
     },
@@ -53,13 +66,13 @@ export const LoginForm: FC = () => {
 
   return (
     <div>
+      {contextHolder}
       <h2>
         {
           location.pathname === '/login' ? 'Вход' : 'Регистрация'
           /*t('forms.AuthForm.title')*/
         }
       </h2>
-      <span>Токен: {token}</span>
       <form onSubmit={formik.handleSubmit}>
         <Space direction="vertical" size="small">
           <Input

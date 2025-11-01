@@ -27,7 +27,8 @@ export interface LoginResponse {
 export const LoginHandlerAsync = async (
   values: LoginVariables,
   loginMutation: useMutation.MutationFunction<LoginResponse, LoginVariables>,
-  eventAfter: (token: string) => void
+  eventAfter: (token: string) => void,
+  eventError?: (error: any) => void
 ) => {
   try {
     const response = await loginMutation({
@@ -40,6 +41,7 @@ export const LoginHandlerAsync = async (
     eventAfter(newToken);
   } catch (error) {
     console.error('Login error:', error);
+    eventError && eventError(error);
   }
 };
 
@@ -70,7 +72,8 @@ export interface SignupResponse {
 export const SignupHandlerAsync = async (
   values: SignupVariables,
   signupMutation: useMutation.MutationFunction<SignupResponse, SignupVariables>,
-  eventAfter: (token: string) => void
+  eventAfter: (token: string) => void,
+  eventError?: (error: any) => void
 ) => {
   try {
     const response = await signupMutation({
@@ -84,5 +87,6 @@ export const SignupHandlerAsync = async (
     eventAfter(newToken);
   } catch (error) {
     console.error('Login error:', error);
+    eventError && eventError(error);
   }
 };
