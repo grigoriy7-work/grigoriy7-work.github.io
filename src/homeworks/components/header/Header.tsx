@@ -7,10 +7,15 @@ import { LanguageeSwithcer } from '../languageSwitcher/LanguageSwitcher';
 import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { LogOut } from '../logOut';
+import { ProfileButton } from '../profileButton';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../features/redux/store';
+import { LoginButton } from '../loginButton';
 
 export const Header: React.FC = () => {
   const theme = useContext(ThemeContext);
   const { t } = useTranslation();
+  const token = useSelector((state: RootState) => state.auth.token);
 
   return (
     <div className={[s.header, s[`header--${theme.color}`]].join(' ')}>
@@ -50,7 +55,14 @@ export const Header: React.FC = () => {
         </NavLink>
       </div>
       <div className={s['control-buttons']}>
-        <LogOut />
+        {token !== '' ? (
+          <>
+            <ProfileButton />
+            <LogOut />
+          </>
+        ) : (
+          <LoginButton />
+        )}
         <ThemeSwithcer />
         <LanguageeSwithcer />
       </div>

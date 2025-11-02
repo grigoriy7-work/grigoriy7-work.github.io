@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState, AppDispatch } from '../../redux/store';
 import { useMutation } from '@apollo/client/react';
 import { setToken } from '../../redux/AuthSlice';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { LoginHandlerAsync, LOGIN_MUTATION, SignupHandlerAsync, SIGNUP_MUTATION } from './handlers';
 import type { LoginVariables, LoginResponse, SignupVariables, SignupResponse } from './handlers';
 import { ServerErrors } from '../../graphql/types';
@@ -24,10 +24,14 @@ export const LoginForm: FC = () => {
     SIGNUP_MUTATION
   );
   const location = useLocation();
+  const navigate = useNavigate();
   const [messageApi, contextHolder] = message.useMessage();
+
+  const fromPathName = (location.state as { from?: Location })?.from?.pathname || '/';
 
   const eventAfter = (newToken: string) => {
     dispatch(setToken(newToken));
+    navigate(fromPathName, { replace: true });
     messageApi.open({
       type: 'success',
       content: `Токен получен: ${newToken}`,

@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Navigate, Outlet } from 'react-router-dom';
+import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import { Role } from '../../types/roles';
 import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
@@ -13,9 +13,10 @@ export const ProtectedRoute: FC<ProtectedRouteProps> = ({ allowedRoles }) => {
   const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);
   const profile = useSelector((state: RootState) => state.auth.profile);
   const { t } = useTranslation();
+  const location = useLocation();
 
   if (!isAuthenticated) {
-    return <Navigate to="/auth" replace />;
+    return <Navigate to="/login" state={{ from: location }} replace />;
   }
 
   if (allowedRoles && profile?.role) {
