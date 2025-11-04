@@ -26,3 +26,23 @@ export enum ErrorCode {
 
   ERR_INTERNAL_SERVER = 'ERR_INTERNAL_SERVER', // Серверная ошибка. Обратитесь ко мне, этой ошибки быть не должно
 }
+
+export type Category = {
+  id: string;
+  name: string;
+  photo?: string;
+  createdAt: Date;
+  updatedAt: Date;
+};
+
+export type Product = {
+  id: string;
+  name: string;
+  photo?: string;
+  desc?: string;
+  createdAt: Date;
+  updatedAt: Date;
+  oldPrice?: number;
+  price: number;
+  category: Category;
+};

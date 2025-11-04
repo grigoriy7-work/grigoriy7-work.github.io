@@ -22,6 +22,7 @@ import { RootState } from '../features/redux/store';
 import { OperationAddScreen } from '../pages/OperationAddScreen';
 import { ProtectedRoute } from '../features/route/ProtectedRoute';
 import { LoginScreen } from '../pages/LoginScreen';
+import { ProductAddScreen } from 'src/pages/ProductAddScreen';
 
 function App() {
   const { t, i18n } = useTranslation();
@@ -57,6 +58,7 @@ function App() {
               <Route element={<ProtectedRoute allowedRoles={['admin']} />}>
                 <Route path="/add-operation" element={<OperationAddScreen />} />
               </Route>
+              <Route path="/add-product" element={<ProductAddScreen />} />
               <Route path="*" element={<div>404 Not Found</div>} />
             </Routes>
           </Layout>

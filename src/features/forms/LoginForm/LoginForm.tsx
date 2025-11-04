@@ -57,11 +57,9 @@ export const LoginForm: FC = () => {
 
       switch (location.pathname) {
         case '/login':
-          console.log('Login submit');
           await LoginHandlerAsync(values, loginMutation, eventAfter, eventError);
           break;
         case '/registration':
-          console.log('Registration submit');
           await SignupHandlerAsync({ ...values, commandId }, signupMutation, eventAfter, eventError);
           break;
       }

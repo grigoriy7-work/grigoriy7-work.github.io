@@ -53,6 +53,12 @@ export const Header: React.FC = () => {
         >
           {t('header.add-operation')}
         </NavLink>
+        <NavLink
+          className={({ isActive }) => `${s['nav-link']} ${isActive ? s['nav-link--active'] : ''}`}
+          to="/add-product"
+        >
+          {'Добавить продукт'}
+        </NavLink>
       </div>
       <div className={s['control-buttons']}>
         {token !== '' ? (
